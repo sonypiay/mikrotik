@@ -14121,6 +14121,7 @@ try {
  */
 
 window.axios = __webpack_require__(19);
+window.swal = __webpack_require__(42);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -47348,8 +47349,15 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -47391,23 +47399,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       forms: {
         username: '',
-        password: ''
+        password: '',
+        submit: 'Log in'
       },
-      errors: {}
+      errors: {},
+      errorMessage: ''
     };
   },
 
   methods: {
     doLogin: function doLogin() {
       if (this.forms.username === '') {
-        __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+        swal({
           title: 'Warning',
           text: 'Please enter your username',
           icon: 'warning',
           dangerMode: true
         });
       } else if (this.forms.password === '') {
-        __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+        swal({
           title: 'Warning',
           text: 'Please enter your password',
           icon: 'warning',
@@ -47424,7 +47434,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }).then(function (res) {
           var result = res.data;
-          __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+          swal({
             title: 'Login Success',
             text: 'Redirecting...',
             icon: 'success'
@@ -47436,14 +47446,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           var status = err.response.status;
           if (status === 401) {
             var message = err.response.data;
-            __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+            swal({
               title: 'Warning',
               text: message.statusText,
               icon: 'warning',
               dangerMode: true
             });
           } else {
-            __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+            swal({
               title: 'Error',
               text: 'An error has occured',
               icon: 'error',
@@ -47474,7 +47484,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "uk-container uk-margin-large-top" }, [
+  return _c("div", { staticClass: "uk-container uk-margin-top" }, [
     _c(
       "div",
       {
@@ -47482,16 +47492,18 @@ var render = function() {
           " uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-2-3@s uk-align-center uk-margin-large-top"
       },
       [
+        _c("div", { staticClass: "uk-text-center login-container-logo" }, [
+          _c("img", {
+            attrs: { src: _vm.url + "/images/logo/biznet_hotspot.png", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           {
             staticClass: "uk-card uk-card-body uk-card-default login-container"
           },
           [
-            _c("div", { staticClass: "uk-card-title uk-text-center" }, [
-              _vm._v("Login Account")
-            ]),
-            _vm._v(" "),
             _c(
               "form",
               {
@@ -47505,9 +47517,11 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "uk-margin" }, [
-                  _c("label", { staticClass: "uk-form-label" }, [
-                    _vm._v("Username")
-                  ]),
+                  _c(
+                    "label",
+                    { staticClass: "uk-form-label form-label-login" },
+                    [_vm._v("Username")]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "uk-form-controls" }, [
                     _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
@@ -47525,7 +47539,7 @@ var render = function() {
                             expression: "forms.username"
                           }
                         ],
-                        staticClass: "uk-width-1-1 uk-input",
+                        staticClass: "uk-width-1-1 uk-input form-label-input",
                         attrs: {
                           type: "text",
                           placeholder: "Enter your username"
@@ -47545,9 +47559,11 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "uk-margin" }, [
-                  _c("label", { staticClass: "uk-form-label" }, [
-                    _vm._v("Password")
-                  ]),
+                  _c(
+                    "label",
+                    { staticClass: "uk-form-label form-label-login" },
+                    [_vm._v("Password")]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "uk-form-controls" }, [
                     _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
@@ -47565,7 +47581,7 @@ var render = function() {
                             expression: "forms.password"
                           }
                         ],
-                        staticClass: "uk-width-1-1 uk-input",
+                        staticClass: "uk-width-1-1 uk-input form-label-input",
                         attrs: {
                           type: "password",
                           placeholder: "Enter your password"
@@ -47584,7 +47600,19 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(0)
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "uk-margin" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "uk-width-1-1 uk-button uk-button-primary form-btnlogin",
+                      domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+                    },
+                    [_vm._v("Log in")]
+                  )
+                ])
               ]
             )
           ]
@@ -47599,14 +47627,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "uk-margin" }, [
-      _c(
-        "button",
-        {
-          staticClass: "uk-width-1-1 uk-button uk-button-primary",
-          attrs: { id: "submitBtn" }
-        },
-        [_vm._v("Log in")]
-      )
+      _c("div", { staticClass: "uk-form-controls" }, [
+        _c("div", { staticClass: "uk-text-center form-rememberme" }, [
+          _c("label", [
+            _c("input", {
+              staticClass: "uk-checkbox",
+              attrs: { type: "checkbox", value: "Y" }
+            }),
+            _vm._v(" Remember Me ")
+          ])
+        ])
+      ])
     ])
   }
 ]

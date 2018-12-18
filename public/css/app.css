@@ -1,4 +1,69 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,900);.navbar {
+@import url(https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,900);.login-container-logo {
+  margin-bottom: 0;
+}
+
+.login-container-logo img {
+  width: 160px;
+}
+
+.login-container {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.login-container .form-label-login {
+  color: #b2b2b2;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+}
+
+.login-container .form-label-input {
+  color: #b2b2b2;
+  font-size: 14px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+  background: rgba(229, 229, 229, 0.81);
+  border: 1px solid #D5D5D5;
+}
+
+.login-container .form-label-input:hover,
+.login-container .form-label-input:focus {
+  background: #ffffff;
+  color: #999999;
+}
+
+.login-container .form-rememberme {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #b8b8b8;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+}
+
+.login-container .form-btnlogin {
+  background: #EB008B;
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+  border: 1px solid #D5D5D5;
+}
+
+.navbar {
   background: #3490dc;
 }
 
@@ -85,7 +150,7 @@
 
 html,
 body {
-  background: #f8fafc;
+  background: #ffffff;
   font-family: 'Nunito', sans-serif;
 }
 

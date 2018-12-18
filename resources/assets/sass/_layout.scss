@@ -1,14 +1,60 @@
+// login container
+.login-container-logo {
+  margin-bottom: 0;
+  img {
+    width: 160px;
+  }
+}
+.login-container {
+  box-shadow: none;
+  .form-label-login {
+    color: #b2b2b2;
+    font-family: $font-primary;
+    font-size: 14px;
+    @include fontstyle( 400, normal, normal, 0.4px );
+  }
+  .form-label-input {
+    color: #b2b2b2;
+    font-size: 14px;
+    font-family: $font-primary;
+    @include fontstyle( 400, normal, normal, 0.4px );
+    background: rgba(229, 229, 229, 0.81);
+    border: 1px solid #D5D5D5;
+    &:hover, &:focus {
+      background: #ffffff;
+      color: #999999;
+    }
+  }
+  .form-rememberme {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #b8b8b8;
+    font-family: $font-primary;
+    font-size: 14px;
+    @include fontstyle( 400, normal, normal, 0.4px );
+  }
+  .form-btnlogin {
+    background: #EB008B;
+    color: #ffffff;
+    font-family: $font-primary;
+    font-size: 14px;
+    @include fontstyle( 400, normal, normal, 0.4px );
+    border: 1px solid #D5D5D5;
+  }
+}
+// login container
+
 .navbar {
   background: $blue;
   .uk-navbar-item {
     color: #ffffff;
-    font-family: $font-family-sans-serif;
+    font-family: $font-primary;
   }
   .navtop {
     li {
       a {
         color: #ffffff;
-        font-family: $font-family-sans-serif;
+        font-family: $font-primary;
         font-size: 13px;
         @include fontstyle( 600, normal, normal, 0.4px );
       }
@@ -21,20 +67,20 @@
 }
 
 .card-header {
-  font-family: $font-family-sans-serif;
+  font-family: $font-primary;
   font-size: 20px;
   @include fontstyle( 600, normal, normal, 0.4px );
   color: #666666;
 }
 .card-body {
   .card-heading {
-    font-family: $font-family-sans-serif;
+    font-family: $font-primary;
     font-size: 16px;
     @include fontstyle( 600, normal, normal, 0.4px );
     color: #666666;
   }
   .card-subtext {
-    font-family: $font-family-sans-serif;
+    font-family: $font-primary;
     font-size: 24px;
     @include fontstyle( 700, normal, normal, 0.4px );
   }
@@ -47,12 +93,12 @@
   border-radius: 3px;
   border: 1px solid #e9e9e9;
   .device_heading {
-    font-family: $font-family-sans-serif;
+    font-family: $font-primary;
     font-size: 22px;
     @include fontstyle( 400, normal, normal, 0.4px );
   }
   .device_value {
-    font-family: $font-family-sans-serif;
+    font-family: $font-primary;
     font-size: 24px;
     @include fontstyle( 700, normal, normal, 0.4px );
   }

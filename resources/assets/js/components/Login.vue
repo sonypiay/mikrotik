@@ -1,29 +1,38 @@
 <template>
-<div class="uk-container uk-margin-large-top">
+<div class="uk-container uk-margin-top">
   <div class=" uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-2-3@s uk-align-center uk-margin-large-top">
+    <div class="uk-text-center login-container-logo">
+      <img :src="url + '/images/logo/biznet_hotspot.png'" alt="">
+    </div>
     <div class="uk-card uk-card-body uk-card-default login-container">
-      <div class="uk-card-title uk-text-center">Login Account</div>
       <form class="uk-form-stacked" @submit.prevent="doLogin">
         <div class="uk-margin">
-          <label class="uk-form-label">Username</label>
+          <label class="uk-form-label form-label-login">Username</label>
           <div class="uk-form-controls">
             <div class="uk-width-1-1 uk-inline">
               <span class="uk-form-icon" uk-icon="user"></span>
-              <input type="text" class="uk-width-1-1 uk-input" placeholder="Enter your username" v-model="forms.username">
+              <input type="text" class="uk-width-1-1 uk-input form-label-input" placeholder="Enter your username" v-model="forms.username">
             </div>
           </div>
         </div>
         <div class="uk-margin">
-          <label class="uk-form-label">Password</label>
+          <label class="uk-form-label form-label-login">Password</label>
           <div class="uk-form-controls">
             <div class="uk-width-1-1 uk-inline">
               <span class="uk-form-icon" uk-icon="lock"></span>
-              <input type="password" class="uk-width-1-1 uk-input" placeholder="Enter your password" v-model="forms.password">
+              <input type="password" class="uk-width-1-1 uk-input form-label-input" placeholder="Enter your password" v-model="forms.password">
             </div>
           </div>
         </div>
         <div class="uk-margin">
-          <button id="submitBtn" class="uk-width-1-1 uk-button uk-button-primary">Log in</button>
+          <div class="uk-form-controls">
+            <div class="uk-text-center form-rememberme">
+              <label> <input type="checkbox" class="uk-checkbox" value="Y"> Remember Me </label>
+            </div>
+          </div>
+        </div>
+        <div class="uk-margin">
+          <button v-html="forms.submit" class="uk-width-1-1 uk-button uk-button-primary form-btnlogin">Log in</button>
         </div>
       </form>
     </div>
@@ -32,16 +41,18 @@
 </template>
 
 <script>
-import swal from 'sweetalert';
+
 export default {
   props: ['url'],
   data() {
     return {
       forms: {
         username: '',
-        password: ''
+        password: '',
+        submit: 'Log in'
       },
-      errors: {}
+      errors: {},
+      errorMessage: ''
     }
   },
   methods: {
