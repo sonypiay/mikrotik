@@ -1,0 +1,59 @@
+.navbar {
+  background: $blue;
+  .uk-navbar-item {
+    color: #ffffff;
+    font-family: $font-family-sans-serif;
+  }
+  .navtop {
+    li {
+      a {
+        color: #ffffff;
+        font-family: $font-family-sans-serif;
+        font-size: 13px;
+        @include fontstyle( 600, normal, normal, 0.4px );
+      }
+    }
+  }
+}
+
+.card {
+  border-radius: 4px;
+}
+
+.card-header {
+  font-family: $font-family-sans-serif;
+  font-size: 20px;
+  @include fontstyle( 600, normal, normal, 0.4px );
+  color: #666666;
+}
+.card-body {
+  .card-heading {
+    font-family: $font-family-sans-serif;
+    font-size: 16px;
+    @include fontstyle( 600, normal, normal, 0.4px );
+    color: #666666;
+  }
+  .card-subtext {
+    font-family: $font-family-sans-serif;
+    font-size: 24px;
+    @include fontstyle( 700, normal, normal, 0.4px );
+  }
+  .rx-byte { color: $blue; }
+  .tx-byte { color: $green; }
+}
+
+.box_deviceinfo {
+  box-shadow: none;
+  border-radius: 3px;
+  border: 1px solid #e9e9e9;
+  .device_heading {
+    font-family: $font-family-sans-serif;
+    font-size: 22px;
+    @include fontstyle( 400, normal, normal, 0.4px );
+  }
+  .device_value {
+    font-family: $font-family-sans-serif;
+    font-size: 24px;
+    @include fontstyle( 700, normal, normal, 0.4px );
+  }
+}

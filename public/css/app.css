@@ -1,0 +1,91 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,900);.navbar {
+  background: #3490dc;
+}
+
+.navbar .uk-navbar-item {
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+}
+
+.navbar .navtop li a {
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+}
+
+.card {
+  border-radius: 4px;
+}
+
+.card-header {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+  color: #666666;
+}
+
+.card-body .card-heading {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+  color: #666666;
+}
+
+.card-body .card-subtext {
+  font-family: "Nunito", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+}
+
+.card-body .rx-byte {
+  color: #3490dc;
+}
+
+.card-body .tx-byte {
+  color: #38c172;
+}
+
+.box_deviceinfo {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 3px;
+  border: 1px solid #e9e9e9;
+}
+
+.box_deviceinfo .device_heading {
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+}
+
+.box_deviceinfo .device_value {
+  font-family: "Nunito", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+}
+
+html,
+body {
+  background: #f8fafc;
+  font-family: 'Nunito', sans-serif;
+}
+
