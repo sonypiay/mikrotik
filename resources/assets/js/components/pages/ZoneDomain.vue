@@ -43,8 +43,8 @@
   <header class="uk-navbar uk-box-shadow-small navbarsearch">
     <div class="uk-width-1-1 uk-navbar-item">
       <div class="uk-width-1-1 uk-inline">
-        <a @keyup.enter="listUsers( pagination.path + '?page=' + pagination.current )" class="uk-form-icon" uk-icon="search"></a>
-        <input @keyup.enter="listUsers( pagination.path + '?page=' + pagination.current )" type="search" class="uk-width-1-1 uk-input navbarformsearch" placeholder="Search..." v-model="searchuser">
+        <a @keyup.enter="listzonedomain( pagination.path + '?page=' + pagination.current )" class="uk-form-icon" uk-icon="search"></a>
+        <input @keyup.enter="listzonedomain( pagination.path + '?page=' + pagination.current )" type="search" class="uk-width-1-1 uk-input navbarformsearch" placeholder="Search..." v-model="keywords">
       </div>
     </div>
   </header>

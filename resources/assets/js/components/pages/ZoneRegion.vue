@@ -1,7 +1,5 @@
 <template lang="html">
-<div class="uk-container uk-margin-large-top">
-  <h3>Zone Region</h3>
-
+<div>
   <div id="addOrUpdate" uk-modal>
     <div class="uk-modal-dialog">
       <div class="uk-modal-body">
@@ -34,17 +32,19 @@
     </div>
   </div>
 
-  <div class="uk-card uk-card-default uk-card-body">
-    <div class="uk-grid-small" uk-grid>
-      <div class="uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-1-2@s">
-        <div class="uk-width-1-1 uk-inline">
-          <a @click="listzoneregion( pagination.path + '?page=' + pagination.current )" class="uk-form-icon" uk-icon="search"></a>
-          <input @keyup.enter="listzoneregion( pagination.path + '?page=' + pagination.current )" type="search" class="uk-input" v-model="keywords" placeholder="Search...">
-        </div>
+  <header class="uk-navbar uk-box-shadow-small navbarsearch">
+    <div class="uk-width-1-1 uk-navbar-item">
+      <div class="uk-width-1-1 uk-inline">
+        <a @click="listzoneregion( pagination.path + '?page=' + pagination.current )" class="uk-form-icon" uk-icon="search"></a>
+        <input @keyup.enter="listzoneregion( pagination.path + '?page=' + pagination.current )" type="search" class="uk-input navbarformsearch" v-model="keywords" placeholder="Search...">
       </div>
-      <div class="uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-1-2@s">
-        <a class="uk-button uk-button-default" @click="addZoneRegion()">Add Zone Region</a>
-      </div>
+    </div>
+  </header>
+
+  <div class="uk-card uk-card-body">
+    <h3>Zone Region</h3>
+    <div class="uk-text-center">
+      <a class="uk-button uk-button-default" @click="addZoneRegion()">Add Zone Region</a>
     </div>
 
     <div class="uk-margin-top uk-overflow-auto">
