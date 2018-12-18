@@ -47722,7 +47722,7 @@ exports = module.exports = __webpack_require__(47)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48215,6 +48215,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url'],
@@ -48447,7 +48449,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "uk-container" }, [
+  return _c("div", [
     _c(
       "div",
       { staticClass: "uk-modal", attrs: { id: "addorUpdate", "uk-modal": "" } },
@@ -48646,87 +48648,84 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-card uk-card-body uk-card-default" }, [
-      _c("div", { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } }, [
+    _c(
+      "header",
+      { staticClass: "uk-navbar uk-box-shadow-small navbarsearch" },
+      [
+        _c("div", { staticClass: "uk-width-1-1 uk-navbar-item" }, [
+          _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
+            _c("a", {
+              staticClass: "uk-form-icon",
+              attrs: { "uk-icon": "search" },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  _vm.listUsers(
+                    _vm.pagination.path + "?page=" + _vm.pagination.current
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchuser,
+                  expression: "searchuser"
+                }
+              ],
+              staticClass: "uk-width-1-1 uk-input navbarformsearch",
+              attrs: { type: "search", placeholder: "Search..." },
+              domProps: { value: _vm.searchuser },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  _vm.listUsers(
+                    _vm.pagination.path + "?page=" + _vm.pagination.current
+                  )
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchuser = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "uk-card uk-card-body" }, [
+      _c("div", { staticClass: "uk-card-title uk-margin-bottom" }, [
+        _vm._v("Users")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-text-center" }, [
         _c(
-          "div",
+          "a",
           {
-            staticClass:
-              "uk-width-1-4@xl uk-width-1-4@l uk-width-1-2@m uk-width-1-2@s"
+            staticClass: "uk-button uk-button-default",
+            on: {
+              click: function($event) {
+                _vm.addUser()
+              }
+            }
           },
-          [
-            _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
-              _c("a", {
-                staticClass: "uk-form-icon",
-                attrs: { "uk-icon": "search" },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !("button" in $event) &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    _vm.listUsers(
-                      _vm.pagination.path + "?page=" + _vm.pagination.current
-                    )
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.searchuser,
-                    expression: "searchuser"
-                  }
-                ],
-                staticClass: "uk-width-1-1 uk-input",
-                attrs: { type: "search", placeholder: "Search..." },
-                domProps: { value: _vm.searchuser },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !("button" in $event) &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    _vm.listUsers(
-                      _vm.pagination.path + "?page=" + _vm.pagination.current
-                    )
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.searchuser = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "uk-width-1-4@xl uk-width-1-2@m uk-width-1-2@s" },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "uk-button uk-button-default",
-                on: {
-                  click: function($event) {
-                    _vm.addUser()
-                  }
-                }
-              },
-              [_vm._v("Add User")]
-            )
-          ]
+          [_vm._v("Add User")]
         )
       ]),
       _vm._v(" "),
@@ -50540,9 +50539,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "uk-container uk-margin-large-top" }, [
-    _c("h3", [_vm._v("Zone Domain")]),
-    _vm._v(" "),
+  return _c("div", [
     _c("div", { attrs: { id: "addOrUpdate", "uk-modal": "" } }, [
       _c("div", { staticClass: "uk-modal-dialog" }, [
         _c("div", { staticClass: "uk-modal-body" }, [
@@ -50696,84 +50693,82 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-card uk-card-default uk-card-body" }, [
-      _c("div", { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } }, [
+    _c(
+      "header",
+      { staticClass: "uk-navbar uk-box-shadow-small navbarsearch" },
+      [
+        _c("div", { staticClass: "uk-width-1-1 uk-navbar-item" }, [
+          _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
+            _c("a", {
+              staticClass: "uk-form-icon",
+              attrs: { "uk-icon": "search" },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  _vm.listUsers(
+                    _vm.pagination.path + "?page=" + _vm.pagination.current
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchuser,
+                  expression: "searchuser"
+                }
+              ],
+              staticClass: "uk-width-1-1 uk-input navbarformsearch",
+              attrs: { type: "search", placeholder: "Search..." },
+              domProps: { value: _vm.searchuser },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  _vm.listUsers(
+                    _vm.pagination.path + "?page=" + _vm.pagination.current
+                  )
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchuser = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "uk-card uk-card-body" }, [
+      _c("h3", [_vm._v("Zone Domain")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-text-center" }, [
         _c(
-          "div",
+          "a",
           {
-            staticClass:
-              "uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-1-2@s"
+            staticClass: "uk-button uk-button-default",
+            on: {
+              click: function($event) {
+                _vm.addZoneDomain()
+              }
+            }
           },
-          [
-            _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
-              _c("a", {
-                staticClass: "uk-form-icon",
-                attrs: { "uk-icon": "search" },
-                on: {
-                  click: function($event) {
-                    _vm.listzonedomain(
-                      _vm.pagination.path + "?page=" + _vm.pagination.current
-                    )
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.keywords,
-                    expression: "keywords"
-                  }
-                ],
-                staticClass: "uk-input",
-                attrs: { type: "search", placeholder: "Search..." },
-                domProps: { value: _vm.keywords },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !("button" in $event) &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    _vm.listzonedomain(
-                      _vm.pagination.path + "?page=" + _vm.pagination.current
-                    )
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.keywords = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-1-2@s"
-          },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "uk-button uk-button-default",
-                on: {
-                  click: function($event) {
-                    _vm.addZoneDomain()
-                  }
-                }
-              },
-              [_vm._v("Add Zone Domain")]
-            )
-          ]
+          [_vm._v("Add Zone Domain")]
         )
       ]),
       _vm._v(" "),

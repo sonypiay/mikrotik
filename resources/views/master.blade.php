@@ -5,28 +5,30 @@
 <title>@yield('headtitle')</title>
 </head>
 <body>
-<header class="uk-navbar uk-box-shadow-small navbar">
-  <div class="uk-navbar-left">
-    <a class="uk-navbar-item uk-logo" href="#">Mikrotik Controller</a>
-  </div>
-  <nav class="uk-navbar-right">
-    <ul class="uk-navbar-nav navtop">
-      <li><a href="#">Welcome, John Doe</a></li>
-    </ul>
-  </nav>
-</header>
-<div class="uk-grid-collapse" uk-grid>
-  <div class="uk-width-1-5@xl uk-width-1-5@l uk-width-1-5@m uk-width-1-1@s">
-    <nav class="uk-card uk-card-body uk-card-default" uk-height-viewport>
-      @include('includes.navleft')
-    </nav>
-  </div>
-  <div class="uk-width-expand">
-    <section class="uk-padding-small uk-margin-small-top">
+  <div class="uk-grid-collapse" uk-grid>
+    <div class="uk-width-1-5@xl uk-width-1-5@l uk-width-1-5@m uk-width-1-1@s">
+      <nav class="mainnav" uk-height-viewport>
+        <section class="uk-navbar uk-box-shadow-small submainnav" uk-navbar>
+          <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="{{ url('/') }}">
+              <img class="logo" src="{{ asset('images/logo/biznet_hotspot_white.png') }}" alt="">
+            </a>
+          </div>
+          <div class="uk-navbar-right">
+            <a class="uk-navbar-item nav-icon-offcanvas">
+              <span uk-icon="menu"></span>
+            </a>
+          </div>
+        </section>
+        <section class="uk-card uk-card-body uk-card-small">
+          @include('includes.navleft')
+        </section>
+      </nav>
+    </div>
+    <div class="uk-width-expand">
       <div id="app">@yield('maincontent')</div>
-    </section>
+    </div>
   </div>
-</div>
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

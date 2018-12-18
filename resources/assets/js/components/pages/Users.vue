@@ -1,5 +1,5 @@
 <template lang="html">
-<div class="uk-container">
+<div>
   <!-- modal -->
   <div id="addorUpdate" class="uk-modal" uk-modal>
     <div class="uk-modal-dialog">
@@ -49,18 +49,20 @@
     </div>
   </div>
   <!-- modal -->
+  
+  <header class="uk-navbar uk-box-shadow-small navbarsearch">
+    <div class="uk-width-1-1 uk-navbar-item">
+      <div class="uk-width-1-1 uk-inline">
+        <a @keyup.enter="listUsers( pagination.path + '?page=' + pagination.current )" class="uk-form-icon" uk-icon="search"></a>
+        <input @keyup.enter="listUsers( pagination.path + '?page=' + pagination.current )" type="search" class="uk-width-1-1 uk-input navbarformsearch" placeholder="Search..." v-model="searchuser">
+      </div>
+    </div>
+  </header>
 
-  <div class="uk-card uk-card-body uk-card-default">
-    <div class="uk-grid-small" uk-grid>
-      <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-2@m uk-width-1-2@s">
-        <div class="uk-width-1-1 uk-inline">
-          <a @keyup.enter="listUsers( pagination.path + '?page=' + pagination.current )" class="uk-form-icon" uk-icon="search"></a>
-          <input @keyup.enter="listUsers( pagination.path + '?page=' + pagination.current )" type="search" class="uk-width-1-1 uk-input" placeholder="Search..." v-model="searchuser">
-        </div>
-      </div>
-      <div class="uk-width-1-4@xl uk-width-1-2@m uk-width-1-2@s">
-        <a class="uk-button uk-button-default" @click="addUser()">Add User</a>
-      </div>
+  <div class="uk-card uk-card-body">
+    <div class="uk-card-title uk-margin-bottom">Users</div>
+    <div class="uk-text-center">
+      <a class="uk-button uk-button-default" @click="addUser()">Add User</a>
     </div>
     <ul class="uk-margin-top uk-margin-bottom uk-pagination">
       <li>

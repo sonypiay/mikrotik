@@ -19,6 +19,9 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
+$primary-color: #EB008B;
+$secondary-color: #db0280;
+
 @mixin fontstyle( $weight, $stretch, $style, $spacing )
 {
   font-weight: $weight;
