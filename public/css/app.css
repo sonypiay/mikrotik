@@ -31,6 +31,7 @@
   letter-spacing: 0.4px;
   background: rgba(229, 229, 229, 0.81);
   border: 1px solid #D5D5D5;
+  border-radius: 2px;
 }
 
 .login-container .form-label-input:hover,
@@ -55,12 +56,18 @@
   background: #EB008B;
   color: #ffffff;
   font-family: "Nunito", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   font-stretch: normal;
   font-style: normal;
   letter-spacing: 0.4px;
-  border: 1px solid #D5D5D5;
+  border: 0;
+  border-radius: 2px;
+}
+
+.login-container .form-btnlogin:hover,
+.login-container .form-btnlogin:focus {
+  background: #db0280;
 }
 
 .navbar {

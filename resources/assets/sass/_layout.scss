@@ -20,6 +20,7 @@
     @include fontstyle( 400, normal, normal, 0.4px );
     background: rgba(229, 229, 229, 0.81);
     border: 1px solid #D5D5D5;
+    border-radius: 2px;
     &:hover, &:focus {
       background: #ffffff;
       color: #999999;
@@ -37,9 +38,13 @@
     background: #EB008B;
     color: #ffffff;
     font-family: $font-primary;
-    font-size: 14px;
+    font-size: 13px;
     @include fontstyle( 400, normal, normal, 0.4px );
-    border: 1px solid #D5D5D5;
+    border: 0;
+    border-radius: 2px;
+    &:hover, &:focus {
+      background: #db0280;
+    }
   }
 }
 // login container

@@ -47388,10 +47388,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url'],
@@ -47400,7 +47396,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       forms: {
         username: '',
         password: '',
-        submit: 'Log in'
+        submit: 'Sign In'
       },
       errors: {},
       errorMessage: ''
@@ -47409,63 +47405,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     doLogin: function doLogin() {
+      var _this = this;
+
+      this.errors = {};
+      this.errorMessage = '';
+
       if (this.forms.username === '') {
-        swal({
-          title: 'Warning',
-          text: 'Please enter your username',
-          icon: 'warning',
-          dangerMode: true
-        });
-      } else if (this.forms.password === '') {
-        swal({
-          title: 'Warning',
-          text: 'Please enter your password',
-          icon: 'warning',
-          dangerMode: true
-        });
-      } else {
-        axios({
-          method: 'post',
-          url: this.url + '/dologin',
-          headers: { 'Content-Type': 'application/json' },
-          params: {
-            username: this.forms.username,
-            password: this.forms.password
-          }
-        }).then(function (res) {
-          var result = res.data;
-          swal({
-            title: 'Login Success',
-            text: 'Redirecting...',
-            icon: 'success'
-          });
-          setTimeout(function () {
-            window.location.href = '';
-          }, 2000);
-        }).catch(function (err) {
-          var status = err.response.status;
-          if (status === 401) {
-            var message = err.response.data;
-            swal({
-              title: 'Warning',
-              text: message.statusText,
-              icon: 'warning',
-              dangerMode: true
-            });
-          } else {
-            swal({
-              title: 'Error',
-              text: 'An error has occured',
-              icon: 'error',
-              dangerMode: true
-            });
-          }
-        });
+        this.forms.error = true;
+        this.errors.username = 'Please enter your username';
       }
+      if (this.forms.password === '') {
+        this.forms.error = true;
+        this.errors.password = 'Please enter your password';
+      }
+
+      if (this.forms.error === true) {
+        this.forms.error = false;
+        return false;
+      }
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'post',
+        url: this.url + '/dologin',
+        headers: { 'Content-Type': 'application/json' },
+        params: {
+          username: this.forms.username,
+          password: this.forms.password
+        }
+      }).then(function (res) {
+        var result = res.data;
+
+        setTimeout(function () {
+          window.location.href = '';
+        }, 2000);
+      }).catch(function (err) {
+        var status = err.response.status;
+        if (status === 401) {
+          var message = err.response.data;
+          _this.errorMessage = message.statusText;
+        } else {
+          _this.errorMessage = err.response.statusText;
+        }
+        _this.forms.submit = 'Sign In';
+      });
     }
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
   }
 });
 
@@ -47504,6 +47488,14 @@ var render = function() {
             staticClass: "uk-card uk-card-body uk-card-default login-container"
           },
           [
+            _vm.errorMessage
+              ? _c("div", {
+                  staticClass: "uk-text-small uk-alert-danger",
+                  attrs: { "uk-alert": "" },
+                  domProps: { innerHTML: _vm._s(_vm.errorMessage) }
+                })
+              : _vm._e(),
+            _vm._v(" "),
             _c(
               "form",
               {
@@ -47524,38 +47516,35 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "uk-form-controls" }, [
-                    _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "user" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.forms.username,
-                            expression: "forms.username"
-                          }
-                        ],
-                        staticClass: "uk-width-1-1 uk-input form-label-input",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter your username"
-                        },
-                        domProps: { value: _vm.forms.username },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.forms, "username", $event.target.value)
-                          }
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.forms.username,
+                          expression: "forms.username"
                         }
+                      ],
+                      staticClass: "uk-width-1-1 uk-input form-label-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.forms.username },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.forms, "username", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm.errors.username
+                    ? _c("div", {
+                        staticClass: "uk-text-small uk-text-danger",
+                        domProps: { innerHTML: _vm._s(_vm.errors.username) }
                       })
-                    ])
-                  ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "uk-margin" }, [
@@ -47566,38 +47555,35 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "uk-form-controls" }, [
-                    _c("div", { staticClass: "uk-width-1-1 uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "lock" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.forms.password,
-                            expression: "forms.password"
-                          }
-                        ],
-                        staticClass: "uk-width-1-1 uk-input form-label-input",
-                        attrs: {
-                          type: "password",
-                          placeholder: "Enter your password"
-                        },
-                        domProps: { value: _vm.forms.password },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.forms, "password", $event.target.value)
-                          }
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.forms.password,
+                          expression: "forms.password"
                         }
+                      ],
+                      staticClass: "uk-width-1-1 uk-input form-label-input",
+                      attrs: { type: "password" },
+                      domProps: { value: _vm.forms.password },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.forms, "password", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm.errors.password
+                    ? _c("div", {
+                        staticClass: "uk-text-small uk-text-danger",
+                        domProps: { innerHTML: _vm._s(_vm.errors.password) }
                       })
-                    ])
-                  ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _vm._m(0),
@@ -47610,7 +47596,7 @@ var render = function() {
                         "uk-width-1-1 uk-button uk-button-primary form-btnlogin",
                       domProps: { innerHTML: _vm._s(_vm.forms.submit) }
                     },
-                    [_vm._v("Log in")]
+                    [_vm._v("Sign in")]
                   )
                 ])
               ]

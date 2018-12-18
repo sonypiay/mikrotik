@@ -51,7 +51,7 @@ class LoginController extends Controller
       {
         $res = [
           'status' => 401,
-          'statusText' => 'Unable to login controller. Wrong password.'
+          'statusText' => 'Invalid Password.'
         ];
       }
     }
@@ -59,7 +59,7 @@ class LoginController extends Controller
     {
       $res = [
         'status' => 401,
-        'statusText' => 'Unable to login controller. Username or Password is invalid'
+        'statusText' => 'Invalid username or password'
       ];
     }
     return response()->json($res, $res['status']);
