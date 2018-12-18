@@ -107,8 +107,9 @@ class DevicesController extends Controller
     $data['result'] = $query;
     foreach( $query as $key => $value )
     {
-      $router = new MikrotikAPI;
-      $data['statusdevice'][] = $router->login( $value->device_id );
+      //$router = new MikrotikAPI;
+      //$data['statusdevice'][] = $router->login( $value->device_id );
+      $data['statusdevice'][] = null;
     }
     return response()->json( $data );
   }

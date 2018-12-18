@@ -1,12 +1,24 @@
 <template lang="html">
 <div>
   <div v-if="errors.error" class="uk-margin-bottom uk-margin-top uk-alert-danger" uk-alert>{{ errors.error }}</div>
-  <button class="uk-margin-bottom uk-button uk-button-primary" @click="devicesInfo()"><span uk-icon="refresh"></span></button>
+  <!--<button class="uk-margin-bottom uk-button uk-button-primary" @click="devicesInfo()"><span uk-icon="refresh"></span></button>-->
   <div class="uk-grid-small" uk-grid>
     <div class="uk-width-1-1">
       <div class="uk-card uk-card-body uk-card-small uk-card-default box_deviceinfo">
+        <div class="device_heading">IP Address</div>
+        <div class="device_value">{{ device.device_ip }}</div>
+      </div>
+    </div>
+    <div class="uk-width-1-2@xl uk-width-1-2@l uk-width-1-2@m uk-width-1-1@s">
+      <div class="uk-card uk-card-body uk-card-small uk-card-default box_deviceinfo">
         <div class="device_heading">Region</div>
-        <div class="device_value">{{ device.region_name + ' - ' + device.region_domain_name }}</div>
+        <div class="device_value">{{ device.region_domain_name }}</div>
+      </div>
+    </div>
+    <div class="uk-width-1-2@xl uk-width-1-2@l uk-width-1-2@m uk-width-1-1@s">
+      <div class="uk-card uk-card-body uk-card-small uk-card-default box_deviceinfo">
+        <div class="device_heading">Location</div>
+        <div class="device_value">{{ device.device_name }}</div>
       </div>
     </div>
     <div class="uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-1-2@s">

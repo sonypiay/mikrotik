@@ -1,5 +1,5 @@
 @extends('master')
-@section('headtitle','Mikrotik Controller | Mikrotik Global User')
+@section('headtitle','Mikrotik Controller | Devices')
 @section('maincontent')
 <devices url="{{ url('/') }}"
 v-bind:usermikrotik="{{ json_encode( $usermikrotik ) }}"

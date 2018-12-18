@@ -1,6 +1,5 @@
 <template lang="html">
-<div class="uk-container uk-margin-top">
-  <div class="uk-card uk-card-body uk-card-default">
+  <div>
     <h3>Log</h3>
     <div class="uk-overflow-auto uk-margin-top uk-height-medium">
       <table class="uk-table uk-table-hover uk-table-striped uk-table-middle uk-table-divider uk-table-small">
@@ -21,7 +20,6 @@
       </table>
     </div>
   </div>
-</div>
 </template>
 
 <script>
