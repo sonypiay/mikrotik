@@ -92,4 +92,43 @@ class MikrotikAPI extends Controller
     $vlan = $mikrotik->deleteVlan( $request );
     return response()->json( $vlan, $vlan['status'] );
   }
+
+  public function showgraph( $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $graph = $mikrotik->getGraphInterface();
+    return response()->json( $graph, 200 );
+  }
+
+  public function addGraph( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $graph = $mikrotik->addGraph( $request );
+    return response()->json( $graph, $graph['status'] );
+  }
+
+  public function deleteGraph( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $graph = $mikrotik->deleteGraph( $request );
+    return response()->json( $graph, $graph['status'] );
+  }
+
+  public function showservice( $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $service = $mikrotik->showservice();
+    return response()->json( $service );
+  }
+  public function findservice( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $service = $mikrotik->findService( $request );
+    return response()->json( $service );
+  }
 }

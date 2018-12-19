@@ -14058,7 +14058,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(82);
+module.exports = __webpack_require__(76);
 
 
 /***/ }),
@@ -51989,7 +51989,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(65)
 /* template */
-var __vue_template__ = __webpack_require__(81)
+var __vue_template__ = __webpack_require__(75)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52033,11 +52033,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_Log_vue__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_Log_vue__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_Log_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__api_Log_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_DeviceInfo_vue__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_DeviceInfo_vue__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_DeviceInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__api_DeviceInfo_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_Graph_vue__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_Graph_vue__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_Graph_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__api_Graph_vue__);
 //
 //
@@ -52085,18 +52085,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(70)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(71)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52135,7 +52132,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52194,7 +52191,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 71 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52261,18 +52258,15 @@ if (false) {
 }
 
 /***/ }),
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(76)
+var __vue_script__ = __webpack_require__(70)
 /* template */
-var __vue_template__ = __webpack_require__(77)
+var __vue_template__ = __webpack_require__(71)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52311,7 +52305,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 76 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52431,7 +52425,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 77 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52691,10 +52685,707 @@ if (false) {
 }
 
 /***/ }),
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(73)
+/* template */
+var __vue_template__ = __webpack_require__(74)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/api/Graph.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-18d1ff1c", Component.options)
+  } else {
+    hotAPI.reload("data-v-18d1ff1c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'device'],
+  data: function data() {
+    return {
+      interfaces: [],
+      graphing: [],
+      services: {
+        port: 80
+      },
+      ifaces: {},
+      forms: {
+        iface: '',
+        allow_address: '0.0.0.0/0',
+        storeondisk: 'yes',
+        submit: 'Add',
+        filterDay: 'daily',
+        error: false,
+        edit: false
+      },
+      errors: {},
+      errorMessage: ''
+    };
+  },
+
+  methods: {
+    addGraphModal: function addGraphModal(graph) {
+      if (graph === undefined) {
+        this.forms.iface = '';
+        this.forms.allow_address = '0.0.0.0/0';
+        this.forms.storeondisk = 'yes';
+        this.forms.submit = 'Add';
+        this.forms.edit = false;
+      } else {
+        var isStoreOnDisk = 'Y';
+        if (graph['store-on-disk']) {
+          isStoreOnDisk = 'yes';
+        } else {
+          isStoreOnDisk = 'no';
+        }
+
+        this.forms.iface = graph.interface, this.forms.allow_address = graph['allow-address'], this.forms.storeondisk = isStoreOnDisk, this.forms.submit = 'Save', this.forms.edit = true;
+      }
+
+      this.forms.error = false;
+      this.errors = {};
+      this.errorMessage = '';
+      UIkit.modal('#modal').show();
+    },
+    getInterface: function getInterface() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/interface/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.interfaces = result.result;
+      }).catch(function (err) {
+        console.log(err.response.status);
+      });
+    },
+    getGraphInterface: function getGraphInterface() {
+      var _this2 = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/graph/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this2.graphing = result.result;
+      }).catch(function (err) {
+        console.log(err.response.status);
+      });
+    },
+    getServices: function getServices() {
+      var _this3 = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/find/service/' + this.device.device_id + '?name=name&value=www'
+      }).then(function (res) {
+        var result = res.data;
+        _this3.services = result.result[0];
+        console.log(_this3.services);
+      }).catch(function (err) {
+        console.log(err.response.status);
+      });
+    },
+    addGraph: function addGraph() {
+      var _this4 = this;
+
+      this.errors = {};
+      this.errorMessage = '';
+      if (this.forms.iface === '') {
+        this.forms.error = true;
+        this.errors.iface = 'Please select interface';
+      }
+
+      if (this.forms.error === true) {
+        this.forms.error = false;
+        return false;
+      }
+
+      if (this.forms.allow_address === '') {
+        this.forms.allow_address = '0.0.0.0/0';
+      }
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'post',
+        url: this.url + '/api/mikrotik/add/graph/' + this.device.device_id,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        params: {
+          iface: this.forms.iface,
+          allow_address: this.forms.allow_address,
+          storeondisk: this.forms.storeondisk
+        }
+      }).then(function (res) {
+        var result = res.data;
+        swal({
+          title: 'Success',
+          text: result.response,
+          icon: 'success',
+          timer: 3000
+        });
+        _this4.getGraphInterface();
+        setTimeout(function () {
+          UIkit.modal('#modal').hide();
+        }, 2000);
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          _this4.errorMessage = err.response.statusText;
+        } else {
+          _this4.errorMessage = err.response.data.response;
+        }
+        _this4.forms.submit = 'Add';
+      });
+    },
+    deleteGraph: function deleteGraph(id, iface) {
+      var _this5 = this;
+
+      swal({
+        title: 'Confirm Delete',
+        text: 'Are you sure want delete ' + iface + '?',
+        icon: 'warning',
+        dangerMode: true,
+        buttons: {
+          cancel: 'Cancel',
+          confirm: {
+            text: 'Delete',
+            value: true
+          }
+        }
+      }).then(function (val) {
+        if (val) {
+          axios({
+            method: 'delete',
+            url: _this5.url + '/api/mikrotik/delete/graph/' + _this5.device.device_id + '?id=' + id + '&iface=' + iface
+          }).then(function (res) {
+            var result = res.data;
+            swal({
+              title: 'Success',
+              text: result.response,
+              icon: 'success',
+              timer: 3000
+            });
+            _this5.getGraphInterface();
+          }).catch(function (err) {
+            if (err.response.status === 500) {
+              _this5.errorMessage = err.response.statusText;
+            } else {
+              _this5.errorMessage = err.response.data.response;
+            }
+            _this5.forms.submit = 'Add';
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getInterface();
+    this.getGraphInterface();
+    this.getServices();
+  }
+});
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { attrs: { id: "modal", "uk-modal": "" } }, [
+      _c("div", { staticClass: "uk-modal-dialog uk-modal-body" }, [
+        _c("h3", [
+          _vm.forms.edit
+            ? _c("span", [_vm._v("Update Graph")])
+            : _c("span", [_vm._v("Add New")])
+        ]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "uk-form-stacked",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.addGraph($event)
+              }
+            }
+          },
+          [
+            _vm.errorMessage
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "uk-text-small uk-alert-danger",
+                    attrs: { "uk-alert": "" }
+                  },
+                  [_vm._v(_vm._s(_vm.errorMessage))]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Interface")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.forms.iface,
+                        expression: "forms.iface"
+                      }
+                    ],
+                    staticClass: "uk-width-1-1 uk-select",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.forms,
+                          "iface",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("-- Interface --")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.interfaces, function(iface) {
+                      return _c("option", { domProps: { value: iface.name } }, [
+                        _vm._v(_vm._s(iface.name))
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _vm.errors.iface
+                ? _c("div", { staticClass: "uk-text-small uk-text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.iface))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Allow Address")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.forms.allow_address,
+                      expression: "forms.allow_address"
+                    }
+                  ],
+                  staticClass: "uk-input",
+                  attrs: { type: "text", value: "0.0.0.0/0" },
+                  domProps: { value: _vm.forms.allow_address },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.forms, "allow_address", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Store on Disk")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.forms.storeondisk,
+                        expression: "forms.storeondisk"
+                      }
+                    ],
+                    staticClass: "uk-select",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.forms,
+                          "storeondisk",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "yes" } }, [_vm._v("Yes")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "no" } }, [_vm._v("No")])
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("button", {
+                staticClass: "uk-button uk-button-primary",
+                domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "uk-button uk-button-default uk-modal-close" },
+                [_vm._v("Cancel")]
+              )
+            ])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("h3", [
+      _vm._v("Graph - " + _vm._s(_vm.device.device_name) + " "),
+      _c(
+        "a",
+        {
+          staticClass: "uk-button uk-button-default",
+          on: {
+            click: function($event) {
+              _vm.addGraphModal()
+            }
+          }
+        },
+        [_vm._v("Add")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "uk-width-1-6@xl uk-width-1-6@l uk-width-1-4@m uk-width-1-2@s"
+        },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.forms.filterDay,
+                  expression: "forms.filterDay"
+                }
+              ],
+              staticClass: "uk-select",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.forms,
+                    "filterDay",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "daily" } }, [_vm._v("Daily")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "weekly" } }, [_vm._v("Week")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "monthly" } }, [_vm._v("Month")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "yearly" } }, [_vm._v("Year")])
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "uk-grid-small uk-margin", attrs: { "uk-grid": "" } },
+      _vm._l(_vm.graphing, function(graph) {
+        return _c(
+          "div",
+          {
+            staticClass:
+              "uk-width-1-2@xl uk-width-1-2@l uk-width-1-2@m uk-width-1-2@s"
+          },
+          [
+            _c("div", { staticClass: "uk-card uk-card-default" }, [
+              _c("div", { staticClass: "uk-card-media-top" }, [
+                _c("div", { staticClass: "uk-cover-container" }, [
+                  _vm.services.port === 80
+                    ? _c("iframe", {
+                        attrs: {
+                          width: "500",
+                          height: "200",
+                          src:
+                            "http://" +
+                            _vm.device.device_ip +
+                            "/graphs/iface/" +
+                            graph.interface +
+                            "/" +
+                            _vm.forms.filterDay +
+                            ".gif"
+                        }
+                      })
+                    : _c("iframe", {
+                        attrs: {
+                          width: "500",
+                          height: "200",
+                          src:
+                            "http://" +
+                            _vm.device.device_ip +
+                            ":" +
+                            _vm.services.port +
+                            "/graphs/iface/" +
+                            graph.interface +
+                            "/" +
+                            _vm.forms.filterDay +
+                            ".gif"
+                        }
+                      })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-card-body uk-card-small" }, [
+                _c("div", { staticClass: "uk-card-title" }, [
+                  _vm._v(_vm._s(graph.interface))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "uk-grid-collapse uk-flex uk-flex-center uk-text-center",
+                    attrs: { "uk-grid": "" }
+                  },
+                  [
+                    _c("div", { staticClass: "uk-width-1-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "uk-button uk-button-text uk-margin-top",
+                          attrs: { "uk-tooltip": "Update" },
+                          on: {
+                            click: function($event) {
+                              _vm.addGraphModal(graph)
+                            }
+                          }
+                        },
+                        [_c("span", { attrs: { "uk-icon": "pencil" } })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-width-1-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "uk-button uk-button-text uk-margin-top",
+                          attrs: { "uk-tooltip": "Delete" },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteGraph(graph[".id"], graph.interface)
+                            }
+                          }
+                        },
+                        [_c("span", { attrs: { "uk-icon": "trash" } })]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-18d1ff1c", module.exports)
+  }
+}
+
+/***/ }),
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52778,145 +53469,10 @@ if (false) {
 }
 
 /***/ }),
-/* 82 */
+/* 76 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(87)
-/* template */
-var __vue_template__ = __webpack_require__(88)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/api/Graph.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-18d1ff1c", Component.options)
-  } else {
-    hotAPI.reload("data-v-18d1ff1c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 87 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url', 'device'],
-  data: function data() {
-    return {
-      interfaces: []
-    };
-  },
-
-  methods: {
-    getInterface: function getInterface() {
-      var _this = this;
-
-      axios({
-        method: 'get',
-        url: this.url + '/api/mikrotik/interface/' + this.device.device_id
-      }).then(function (res) {
-        var result = res.data;
-        _this.interfaces = result.result;
-        console.log(_this.interfaces);
-      }).catch(function (err) {
-        console.log(err.response.status);
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.getInterface();
-  }
-});
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", [_vm._v("Graph")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } },
-      _vm._l(5, function(i) {
-        return _c(
-          "div",
-          {
-            staticClass:
-              "uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-1-2@s"
-          },
-          [_c("div", { staticClass: "uk-card uk-card-body uk-card-primary" })]
-        )
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-18d1ff1c", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

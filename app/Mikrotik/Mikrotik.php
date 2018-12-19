@@ -186,6 +186,82 @@ class Mikrotik {
     }
     return $res;
   }
+
+  public function getGraphInterface()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => $login['command']->comm('/tool/graphing/interface/print')
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
+
+  public function getServices()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => $login['command']->comm('/ip/service/print')
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
+
+  public function findService( $request )
+  {
+    $name = $request->name;
+    $value = $request->value;
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => $login['command']->comm('/ip/service/print', [
+          '?' . $name => $value
+        ])
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
 }
 
 trait MikrotikManipulate {
@@ -307,6 +383,88 @@ trait MikrotikManipulate {
           'ip' => $this->ip,
           'status' => 200,
           'response' => $vlanname . ' has removed',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function addGraph( $request )
+  {
+    $iface = $request->iface;
+    $storeondisk = $request->storeondisk;
+    $allow_address = $request->allow_address;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/tool/graphing/interface/add', [
+        'allow-address' => $allow_address,
+        'store-on-disk' => $storeondisk,
+        'interface' => $iface
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 400,
+          'response' => $comm['!trap'][0]['message'],
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'New interface added',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function deleteGraph( $request )
+  {
+    $id = $request->id;
+    $iface = $request->iface;
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/tool/graphing/interface/remove', [
+        '.id' => $id
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => $iface . ' graph has removed',
         ];
       }
     }
