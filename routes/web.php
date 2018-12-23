@@ -31,6 +31,8 @@ Route::get('/logout', function() {
 Route::get('/', function () { return redirect( route('dashboardpage') ); });
 Route::get('/dashboard', 'Pages\DashboardController@index')->name('dashboardpage');
 Route::get('/summary_ap', 'Pages\DashboardController@summary_ap');
+Route::get('/location/{zone}', 'Pages\DevicesController@location');
+Route::get('/selectedlocation', 'Pages\DevicesController@selectedlocation');
 // dashboard
 
 // users management
@@ -81,5 +83,6 @@ Route::group(['prefix' => 'devices'], function() {
   Route::put('/update/{id}', 'Pages\DevicesController@update');
   Route::delete('/delete/{id}', 'Pages\DevicesController@destroy');
   Route::get('/monitor/{id}', 'Pages\DevicesController@detaildevice')->name('detaildevice');
+  Route::get('/controller/{id}', 'Pages\DevicesController@controllerdevice');
 });
 // devices

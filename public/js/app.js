@@ -14400,6 +14400,8 @@ Vue.component('zonedomain', __webpack_require__(58));
 Vue.component('devices', __webpack_require__(61));
 Vue.component('getdevices', __webpack_require__(64));
 Vue.component('dashboardsection', __webpack_require__(76));
+Vue.component('locationdevice', __webpack_require__(81));
+Vue.component('controllerdevice', __webpack_require__(88));
 
 var app = new Vue({
   el: '#app'
@@ -51066,7 +51068,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'region', 'usermikrotik'],
@@ -51874,7 +51875,8 @@ var render = function() {
                     _c("a", {
                       staticClass: "uk-button uk-button-text",
                       attrs: {
-                        href: "#",
+                        href:
+                          _vm.url + "/devices/controller/" + device.device_id,
                         "uk-icon": "cog",
                         "uk-tooltip": "Controller"
                       }
@@ -52075,7 +52077,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     graphtool: __WEBPACK_IMPORTED_MODULE_2__api_Graph_vue___default.a
   },
   data: function data() {
-    return { component: 'monitor' };
+    return { component: 'deviceinfo' };
   },
 
   methods: {
@@ -52815,13 +52817,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -53326,47 +53321,21 @@ var render = function() {
                   _vm._v(_vm._s(graph.interface))
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "uk-grid-collapse uk-flex uk-flex-center uk-text-center",
-                    attrs: { "uk-grid": "" }
-                  },
-                  [
-                    _c("div", { staticClass: "uk-width-1-2" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "uk-button uk-button-text uk-margin-top",
-                          attrs: { "uk-tooltip": "Update" },
-                          on: {
-                            click: function($event) {
-                              _vm.addGraphModal(graph)
-                            }
-                          }
-                        },
-                        [_c("span", { attrs: { "uk-icon": "pencil" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-width-1-2" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "uk-button uk-button-text uk-margin-top",
-                          attrs: { "uk-tooltip": "Delete" },
-                          on: {
-                            click: function($event) {
-                              _vm.deleteGraph(graph[".id"], graph.interface)
-                            }
-                          }
-                        },
-                        [_c("span", { attrs: { "uk-icon": "trash" } })]
-                      )
-                    ])
-                  ]
-                )
+                _c("div", { staticClass: "uk-text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "uk-button uk-button-text uk-margin-top",
+                      attrs: { "uk-tooltip": "Delete" },
+                      on: {
+                        click: function($event) {
+                          _vm.deleteGraph(graph[".id"], graph.interface)
+                        }
+                      }
+                    },
+                    [_c("span", { attrs: { "uk-icon": "trash" } })]
+                  )
+                ])
               ])
             ])
           ]
@@ -53649,7 +53618,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "uk-card uk-card-body" }, [
-      _c("h3", [_vm._v("Devices")]),
+      _c("h3", [_vm._v("Dashboard")]),
       _vm._v(" "),
       _vm.summaryap.isLoading === true
         ? _c("div", { staticClass: "uk-text-center uk-margin-top" }, [
@@ -53684,7 +53653,15 @@ var render = function() {
                         _vm._l(_vm.summaryap.results, function(aps) {
                           return _c("tr", [
                             _c("td", { staticClass: "uk-table-expand" }, [
-                              _vm._v(_vm._s(aps.domain_name))
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: _vm.url + "/location/" + aps.domain_id
+                                  }
+                                },
+                                [_vm._v(_vm._s(aps.domain_name))]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -53748,13 +53725,27 @@ if (false) {
 }
 
 /***/ }),
-/* 81 */,
+/* 81 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\works\\mikrotik\\resources\\assets\\js\\components\\pages\\Location.vue'");
+
+/***/ }),
 /* 82 */,
 /* 83 */,
 /* 84 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\works\\mikrotik\\resources\\assets\\js\\components\\pages\\Controller.vue'");
 
 /***/ })
 /******/ ]);

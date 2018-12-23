@@ -1,6 +1,5 @@
 <template lang="html">
 <div class="uk-container uk-margin-top">
-  <!--<h3>{{ device.device_name }}</h3>-->
   <div class="uk-margin-top">
     <ul class="uk-flex-center" uk-tab>
       <li><a @click="viewPage('deviceinfo')">Device Info</a></li>
@@ -8,6 +7,7 @@
       <li><a @click="viewPage('graph')">Graph</a></li>
     </ul>
   </div>
+
   <div v-if="component === 'deviceinfo'">
     <deviceinfo :url="url" :device="device" />
   </div>
@@ -33,7 +33,7 @@ export default {
     graphtool
   },
   data() {
-    return { component: 'monitor' }
+    return { component: 'deviceinfo' }
   },
   methods: { viewPage(menu) { this.component = menu; } }
 }

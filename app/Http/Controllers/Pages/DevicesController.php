@@ -227,4 +227,84 @@ class DevicesController extends Controller
     }
     return response()->json($res, $res['status']);
   }
+
+  public function location( Request $request, RegionDomain $domain, $zone )
+  {
+    $getdomain = $domain->where('region_domain_id', $zone)->first();
+    if( $request->session()->has('hasLogin') )
+    {
+      return response()->view('pages.location', [
+        'request' => $request,
+        'getSession' => $request->session(),
+        'domain' => $getdomain
+      ]);
+    }
+    else
+    {
+      return redirect( route('loginpage') );
+    }
+  }
+
+  public function selectedlocation( Request $request, Devices $devices )
+  {
+    $keywords = $request->keywords;
+    $limit = $request->limit;
+    $zone = $request->zone;
+    $query = new $devices;
+
+    if( empty( $keywords ) )
+    {
+      $query = $devices->join('region_domain', 'devices.region_domain_id', '=', 'region_domain.region_domain_id')
+      ->where('devices.region_domain_id', '=', $zone)
+      ->orderBy('devices.device_id', 'desc')
+      ->paginate( $limit );
+    }
+    else
+    {
+      $query = $devices->where([
+        ['device_name', 'like', '%' . $keywords . '%'],
+        ['devices.region_domain_id', '=', $zone]
+      ])
+      ->orWhere([
+        ['device_ip', 'like', '%' . $keywords . '%'],
+        ['devices.region_domain_id', '=', $zone]
+      ])
+      ->orWhere([
+        ['device_type', 'like', '%' . $keywords . '%'],
+        ['devices.region_domain_id', '=', $zone]
+      ])
+      ->join('region_domain', 'devices.region_domain_id', '=', 'region_domain.region_domain_id')
+      ->orderBy('devices.device_id', 'desc')
+      ->paginate( $limit );
+    }
+
+    $data = [];
+    $data['result'] = $query;
+    foreach( $query as $key => $value )
+    {
+      $router = new MikrotikAPI;
+      $data['statusdevice'][] = $router->login( $value->device_id );
+      //$data['statusdevice'][] = null;
+    }
+    return response()->json( $data );
+  }
+
+  public function controllerdevice( Request $request, Devices $devices, $id )
+  {
+    if( $request->session()->has('hasLogin') )
+    {
+      $device = $devices->where('devices.device_id', $id)->first();
+      if( $device->count() == 0 ) abort(404);
+
+      return response()->view('pages.controller', [
+        'request' => $request,
+        'getSession' => $request->session(),
+        'device' => $device
+      ]);
+    }
+    else
+    {
+      return redirect( route('loginpage') );
+    }
+  }
 }

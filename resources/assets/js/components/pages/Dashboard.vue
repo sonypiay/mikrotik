@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <div class="uk-card uk-card-body">
-      <h3>Devices</h3>
+      <h3>Dashboard</h3>
       <div v-if="summaryap.isLoading === true" class="uk-text-center uk-margin-top">
         <span class="uk-margin-small-right" uk-spinner></span> Loading Data ...
       </div>
@@ -21,7 +21,7 @@
             </thead>
             <tbody>
               <tr v-for="aps in summaryap.results">
-                <td class="uk-table-expand">{{ aps.domain_name }}</td>
+                <td class="uk-table-expand"><a :href="url + '/location/' + aps.domain_id">{{ aps.domain_name }}</a></td>
                 <td><span class="uk-label uk-label-success">{{ aps.connect }}</span></td>
                 <td><span class="uk-label uk-label-danger">{{ aps.disconnect }}</span></td>
                 <td><span class="uk-label uk-label-primary">{{ aps.total }}</span></td>
