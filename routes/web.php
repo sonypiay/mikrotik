@@ -30,6 +30,7 @@ Route::get('/logout', function() {
 // dahsboard
 Route::get('/', function () { return redirect( route('dashboardpage') ); });
 Route::get('/dashboard', 'Pages\DashboardController@index')->name('dashboardpage');
+Route::get('/summary_ap', 'Pages\DashboardController@summary_ap');
 // dashboard
 
 // users management

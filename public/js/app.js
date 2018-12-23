@@ -14089,6 +14089,7 @@ Vue.component('zoneregion', __webpack_require__(55));
 Vue.component('zonedomain', __webpack_require__(58));
 Vue.component('devices', __webpack_require__(61));
 Vue.component('getdevices', __webpack_require__(64));
+Vue.component('dashboardsection', __webpack_require__(80));
 
 var app = new Vue({
   el: '#app'
@@ -53473,6 +53474,287 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(81)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(83)
+/* template */
+var __vue_template__ = __webpack_require__(84)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/Dashboard.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3b8700a2", Component.options)
+  } else {
+    hotAPI.reload("data-v-3b8700a2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(82);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(48)("a19256ce", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3b8700a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3b8700a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(47)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url'],
+  data: function data() {
+    return {
+      summaryap: {
+        total: 0,
+        results: [],
+        isLoading: true
+      }
+    };
+  },
+
+  methods: {
+    getSummaryAps: function getSummaryAps() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/summary_ap'
+      }).then(function (res) {
+        var result = res.data;
+        _this.summaryap = {
+          total: result.total,
+          results: result.results,
+          isLoading: false
+        };
+      }).catch(function (err) {
+        console.error(err.response.statusText);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSummaryAps();
+  }
+});
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "uk-card uk-card-body" }, [
+      _c("h3", [_vm._v("Devices")]),
+      _vm._v(" "),
+      _vm.summaryap.isLoading === true
+        ? _c("div", { staticClass: "uk-text-center uk-margin-top" }, [
+            _c("span", {
+              staticClass: "uk-margin-small-right",
+              attrs: { "uk-spinner": "" }
+            }),
+            _vm._v(" Loading Data ...\n    ")
+          ])
+        : _c("div", [
+            _vm.summaryap.total === 0
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "uk-alert-warning uk-margin-top",
+                    attrs: { "uk-alert": "" }
+                  },
+                  [_vm._v("\n        No data\n      ")]
+                )
+              : _c("div", { staticClass: "uk-overflow-auto uk-margin-top" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "uk-table uk-table-middle uk-table-hover uk-table-striped uk-table-small uk-table-condensed"
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.summaryap.results, function(aps) {
+                          return _c("tr", [
+                            _c("td", { staticClass: "uk-table-expand" }, [
+                              _vm._v(_vm._s(aps.domain_name))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "span",
+                                { staticClass: "uk-label uk-label-success" },
+                                [_vm._v(_vm._s(aps.connect))]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "span",
+                                { staticClass: "uk-label uk-label-danger" },
+                                [_vm._v(_vm._s(aps.disconnect))]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "span",
+                                { staticClass: "uk-label uk-label-primary" },
+                                [_vm._v(_vm._s(aps.total))]
+                              )
+                            ])
+                          ])
+                        })
+                      )
+                    ]
+                  )
+                ])
+          ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Location")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Up")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Down")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Access Point")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3b8700a2", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

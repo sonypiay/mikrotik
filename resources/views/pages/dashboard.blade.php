@@ -1,5 +1,5 @@
 @extends('master')
-@section('headtitle','Mikrotik Controller - Dashboard')
+@section('headtitle','Mikrotik Controller | Dashboard')
 @section('maincontent')
-this is dashboard pages
+<dashboardsection url="{{ url('/') }}" />
 @endsection
