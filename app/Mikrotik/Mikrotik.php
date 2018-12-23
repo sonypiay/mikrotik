@@ -334,6 +334,41 @@ class Mikrotik {
     }
     return $res;
   }
+
+  public function show_bandwidth()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $download = $login['command']->comm('/queue/type/print', [
+        '?name' => 'pcq-down-biznethotspot'
+      ]);
+
+      $upload = $login['command']->comm('/queue/type/print', [
+        '?name' => 'pcq-up-biznethotspot'
+      ]);
+
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => [
+          'download' => $download,
+          'upload' => $upload
+        ]
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
 }
 
 trait MikrotikManipulate {
@@ -747,6 +782,48 @@ trait MikrotikManipulate {
         'ip' => $this->ip,
         'status' => 200,
         'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function updateBandwidth( $request )
+  {
+    $upload = $request->upload;
+    $download = $request->download;
+    $id_upload = $request->id_upload;
+    $id_download = $request->id_download;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $download = $login['command']->comm('/queue/type/set', [
+        '.id' => $id_upload,
+        'pcq-rate' => $download
+      ]);
+
+      $upload = $login['command']->comm('/queue/type/set', [
+        '.id' => $id_download,
+        'pcq-rate' => $upload
+      ]);
+
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => [
+          'download' => $download,
+          'upload' => $upload
+        ]
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
       ];
     }
     return $res;

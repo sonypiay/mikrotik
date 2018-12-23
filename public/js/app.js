@@ -55329,14 +55329,105 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
+  props: ['url', 'device'],
   data: function data() {
-    return {};
+    return {
+      forms: {
+        upload: 0,
+        download: 0,
+        submit: 'Edit'
+      },
+      bandwidth: {
+        upload: [],
+        download: []
+      }
+    };
   },
 
-  methods: {}
+  methods: {
+    getBandwidth: function getBandwidth() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/bandwidth/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.bandwidth.upload = result.result.upload[0];
+        _this.bandwidth.download = result.result.download[0];
+        _this.forms.upload = _this.bandwidth.upload['pcq-rate'];
+        _this.forms.download = _this.bandwidth.download['pcq-rate'];
+      }).catch(function (err) {
+        console.log(err.response.statusText);
+      });
+    },
+    formatSize: function formatSize(size) {
+      var sizes = ['B', 'K', 'M', 'G', 'T'];
+      var result;
+      if (isNaN(size)) {
+        result = 'NaN';
+      } else {
+        if (size == 0) return '0 Byte';
+        var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
+        result = Math.round(size / Math.pow(1024, i), 2) + sizes[i];
+      }
+      return result;
+    },
+    updateBandwidth: function updateBandwidth() {
+      var _this2 = this;
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'put',
+        url: this.url + '/api/mikrotik/update/bandwidth/' + this.device.device_id,
+        params: {
+          upload: this.forms.upload,
+          download: this.forms.download,
+          id_upload: this.bandwidth.upload['.id'],
+          id_download: this.bandwidth.download['.id']
+        }
+      }).then(function (res) {
+        var result = res.data;
+        swal({
+          title: 'Success',
+          text: result.response,
+          icon: 'success',
+          timer: 3000
+        });
+        _this2.forms.submit = 'Edit';
+        _this2.getBandwidth();
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          _this2.errorMessage = err.response.statusText;
+        } else {
+          _this2.errorMessage = err.response.data.response;
+        }
+        _this2.forms.submit = 'Edit';
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getBandwidth();
+  }
 });
 
 /***/ }),
@@ -55347,7 +55438,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("h3", [_vm._v("Bandwidth")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "uk-form-stacked",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateBandwidth($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("label", { staticClass: "uk-form-label" }, [_vm._v("Upload")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "uk-form-controls" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.forms.upload,
+                  expression: "forms.upload"
+                }
+              ],
+              staticClass: "uk-width-medium uk-input",
+              attrs: { type: "text" },
+              domProps: { value: _vm.forms.upload },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.forms, "upload", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("label", { staticClass: "uk-form-label" }, [_vm._v("Download")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "uk-form-controls" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.forms.download,
+                  expression: "forms.download"
+                }
+              ],
+              staticClass: "uk-width-medium uk-input",
+              attrs: { type: "text" },
+              domProps: { value: _vm.forms.download },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.forms, "download", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("button", {
+            staticClass: "uk-button uk-button-default",
+            domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+          })
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

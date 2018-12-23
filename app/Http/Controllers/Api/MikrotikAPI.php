@@ -194,4 +194,20 @@ class MikrotikAPI extends Controller
     $walledgarden = $mikrotik->deleteWalledGarden( $request );
     return response()->json( $walledgarden );
   }
+
+  public function show_bandwidth( $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $bandwidth = $mikrotik->show_bandwidth();
+    return response()->json( $bandwidth );
+  }
+
+  public function updateBandwidth( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $bandwidth = $mikrotik->updateBandwidth( $request );
+    return response()->json( $bandwidth );
+  }
 }
