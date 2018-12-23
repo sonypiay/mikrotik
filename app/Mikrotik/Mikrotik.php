@@ -636,13 +636,11 @@ trait MikrotikManipulate {
   public function addWalledGarden( $request )
   {
     $dsthost = $request->dsthost;
-    $server = $request->hs;
 
     $login = $this->login();
     if( $login['response'] == 'connected' )
     {
       $comm = $login['command']->comm('/ip/hotspot/walled-garden/add', [
-        'server' => $server,
         'dst-host' => $dsthost
       ]);
 
@@ -677,7 +675,6 @@ trait MikrotikManipulate {
   public function updateWalledGarden( $request )
   {
     $dsthost = $request->dsthost;
-    $server = $request->hs;
     $id = $request->id;
 
     $login = $this->login();
@@ -685,7 +682,6 @@ trait MikrotikManipulate {
     {
       $comm = $login['command']->comm('/ip/hotspot/walled-garden/set', [
         '.id' => $id,
-        'server' => $server,
         'dst-host' => $dsthost
       ]);
 
