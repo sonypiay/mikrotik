@@ -23,6 +23,7 @@ Vue.component('zonedomain', require('./components/pages/ZoneDomain.vue'));
 Vue.component('devices', require('./components/pages/Devices.vue'));
 Vue.component('getdevices', require('./components/pages/DetailDevice.vue'));
 Vue.component('dashboardsection', require('./components/pages/Dashboard.vue'));
+Vue.component('locationdevice', require('./components/pages/Location.vue'));
 
 const app = new Vue({
     el: '#app'

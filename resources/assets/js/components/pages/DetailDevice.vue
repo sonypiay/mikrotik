@@ -33,7 +33,7 @@ export default {
     graphtool
   },
   data() {
-    return { component: 'monitor' }
+    return { component: 'deviceinfo' }
   },
   methods: { viewPage(menu) { this.component = menu; } }
 }

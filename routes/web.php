@@ -31,6 +31,8 @@ Route::get('/logout', function() {
 Route::get('/', function () { return redirect( route('dashboardpage') ); });
 Route::get('/dashboard', 'Pages\DashboardController@index')->name('dashboardpage');
 Route::get('/summary_ap', 'Pages\DashboardController@summary_ap');
+Route::get('/location/{zone}', 'Pages\DevicesController@location');
+Route::get('/selectedlocation', 'Pages\DevicesController@selectedlocation');
 // dashboard
 
 // users management
