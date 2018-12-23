@@ -63,17 +63,10 @@
           </div>
           <div class="uk-card-body uk-card-small">
             <div class="uk-card-title">{{ graph.interface }}</div>
-            <div class="uk-grid-collapse uk-flex uk-flex-center uk-text-center" uk-grid>
-              <div class="uk-width-1-2">
-                <button @click="addGraphModal( graph )" class="uk-button uk-button-text uk-margin-top" uk-tooltip="Update">
-                  <span uk-icon="pencil"></span>
-                </button>
-              </div>
-              <div class="uk-width-1-2">
-                <button @click="deleteGraph( graph['.id'], graph.interface )" class="uk-button uk-button-text uk-margin-top" uk-tooltip="Delete">
-                  <span uk-icon="trash"></span>
-                </button>
-              </div>
+            <div class="uk-text-center">
+              <button @click="deleteGraph( graph['.id'], graph.interface )" class="uk-button uk-button-text uk-margin-top" uk-tooltip="Delete">
+                <span uk-icon="trash"></span>
+              </button>
             </div>
           </div>
         </div>

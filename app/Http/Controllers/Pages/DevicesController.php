@@ -288,4 +288,23 @@ class DevicesController extends Controller
     }
     return response()->json( $data );
   }
+
+  public function controllerdevice( Request $request, Devices $devices, $id )
+  {
+    if( $request->session()->has('hasLogin') )
+    {
+      $device = $devices->where('devices.device_id', $id)->first();
+      if( $device->count() == 0 ) abort(404);
+
+      return response()->view('pages.controller', [
+        'request' => $request,
+        'getSession' => $request->session(),
+        'device' => $device
+      ]);
+    }
+    else
+    {
+      return redirect( route('loginpage') );
+    }
+  }
 }

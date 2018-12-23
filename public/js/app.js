@@ -14401,6 +14401,7 @@ Vue.component('devices', __webpack_require__(61));
 Vue.component('getdevices', __webpack_require__(64));
 Vue.component('dashboardsection', __webpack_require__(76));
 Vue.component('locationdevice', __webpack_require__(81));
+Vue.component('controllerdevice', __webpack_require__(88));
 
 var app = new Vue({
   el: '#app'
@@ -51067,7 +51068,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'region', 'usermikrotik'],
@@ -51875,7 +51875,8 @@ var render = function() {
                     _c("a", {
                       staticClass: "uk-button uk-button-text",
                       attrs: {
-                        href: "#",
+                        href:
+                          _vm.url + "/devices/controller/" + device.device_id,
                         "uk-icon": "cog",
                         "uk-tooltip": "Controller"
                       }
@@ -52816,13 +52817,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -53327,47 +53321,21 @@ var render = function() {
                   _vm._v(_vm._s(graph.interface))
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "uk-grid-collapse uk-flex uk-flex-center uk-text-center",
-                    attrs: { "uk-grid": "" }
-                  },
-                  [
-                    _c("div", { staticClass: "uk-width-1-2" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "uk-button uk-button-text uk-margin-top",
-                          attrs: { "uk-tooltip": "Update" },
-                          on: {
-                            click: function($event) {
-                              _vm.addGraphModal(graph)
-                            }
-                          }
-                        },
-                        [_c("span", { attrs: { "uk-icon": "pencil" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-width-1-2" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "uk-button uk-button-text uk-margin-top",
-                          attrs: { "uk-tooltip": "Delete" },
-                          on: {
-                            click: function($event) {
-                              _vm.deleteGraph(graph[".id"], graph.interface)
-                            }
-                          }
-                        },
-                        [_c("span", { attrs: { "uk-icon": "trash" } })]
-                      )
-                    ])
-                  ]
-                )
+                _c("div", { staticClass: "uk-text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "uk-button uk-button-text uk-margin-top",
+                      attrs: { "uk-tooltip": "Delete" },
+                      on: {
+                        click: function($event) {
+                          _vm.deleteGraph(graph[".id"], graph.interface)
+                        }
+                      }
+                    },
+                    [_c("span", { attrs: { "uk-icon": "trash" } })]
+                  )
+                ])
               ])
             ])
           ]
@@ -54117,7 +54085,8 @@ var render = function() {
                     _c("a", {
                       staticClass: "uk-button uk-button-text",
                       attrs: {
-                        href: "#",
+                        href:
+                          _vm.url + "/devices/controller/" + device.device_id,
                         "uk-icon": "cog",
                         "uk-tooltip": "Controller"
                       }
@@ -54229,6 +54198,1372 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(89)
+/* template */
+var __vue_template__ = __webpack_require__(90)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/Controller.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-93d26d04", Component.options)
+  } else {
+    hotAPI.reload("data-v-93d26d04", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_LocationID_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_LocationID_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__api_LocationID_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_RadiusIP_vue__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_RadiusIP_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__api_RadiusIP_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_WalledGarden_vue__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_WalledGarden_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__api_WalledGarden_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_SessionTimeout_vue__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_SessionTimeout_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__api_SessionTimeout_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_Bandwidth_vue__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_Bandwidth_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__api_Bandwidth_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'device'],
+  data: function data() {
+    return { component: 'locationid' };
+  },
+
+  components: {
+    locationid: __WEBPACK_IMPORTED_MODULE_0__api_LocationID_vue___default.a, radiusip: __WEBPACK_IMPORTED_MODULE_1__api_RadiusIP_vue___default.a, walledgarden: __WEBPACK_IMPORTED_MODULE_2__api_WalledGarden_vue___default.a, sessiontimeout: __WEBPACK_IMPORTED_MODULE_3__api_SessionTimeout_vue___default.a, bandwidth: __WEBPACK_IMPORTED_MODULE_4__api_Bandwidth_vue___default.a
+  },
+  methods: {
+    viewPage: function viewPage(menu) {
+      this.component = menu;
+    }
+  }
+});
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "uk-container uk-margin-top" }, [
+    _c("div", { staticClass: "uk-margin-top" }, [
+      _c("ul", { staticClass: "uk-flex-center", attrs: { "uk-tab": "" } }, [
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  _vm.viewPage("locationid")
+                }
+              }
+            },
+            [_vm._v("Location ID")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  _vm.viewPage("radiusip")
+                }
+              }
+            },
+            [_vm._v("Radius IP")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  _vm.viewPage("walledgarden")
+                }
+              }
+            },
+            [_vm._v("Walled Garden")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  _vm.viewPage("bandwidth")
+                }
+              }
+            },
+            [_vm._v("Bandwidth")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  _vm.viewPage("sessiontimeout")
+                }
+              }
+            },
+            [_vm._v("Session Timeout")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.component === "locationid"
+      ? _c(
+          "div",
+          [_c("locationid", { attrs: { url: _vm.url, device: _vm.device } })],
+          1
+        )
+      : _vm.component === "radiusip"
+        ? _c(
+            "div",
+            [_c("radiusip", { attrs: { url: _vm.url, device: _vm.device } })],
+            1
+          )
+        : _vm.component === "walledgarden"
+          ? _c(
+              "div",
+              [
+                _c("walledgarden", {
+                  attrs: { url: _vm.url, device: _vm.device }
+                })
+              ],
+              1
+            )
+          : _vm.component === "bandwidth"
+            ? _c(
+                "div",
+                [
+                  _c("bandwidth", {
+                    attrs: { url: _vm.url, device: _vm.device }
+                  })
+                ],
+                1
+              )
+            : _c(
+                "div",
+                [
+                  _c("sessiontimeout", {
+                    attrs: { url: _vm.url, device: _vm.device }
+                  })
+                ],
+                1
+              )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-93d26d04", module.exports)
+  }
+}
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(92)
+/* template */
+var __vue_template__ = __webpack_require__(93)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/api/LocationID.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-da2b23c8", Component.options)
+  } else {
+    hotAPI.reload("data-v-da2b23c8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'device'],
+  data: function data() {
+    return {
+      forms: {
+        id: '',
+        locationid: '',
+        submit: 'Edit'
+      },
+      locationid: []
+    };
+  },
+
+  methods: {
+    getLocationID: function getLocationID() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/locationid/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.locationid = result.result[1];
+        _this.forms.id = _this.locationid['.id'];
+        _this.forms.locationid = _this.locationid['radius-location-id'];
+      }).catch(function (err) {
+        console.log(err.response.statusText);
+      });
+    },
+    updateLocation: function updateLocation() {
+      var _this2 = this;
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'put',
+        url: this.url + '/api/mikrotik/update/locationid/' + this.device.device_id,
+        params: {
+          id: this.forms.id,
+          location_id: this.forms.locationid
+        }
+      }).then(function (res) {
+        var result = res.data;
+        swal({
+          title: 'Success',
+          text: result.response,
+          icon: 'success',
+          timer: 3000
+        });
+        _this2.forms.submit = 'Edit';
+        _this2.getLocationID();
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          _this2.errorMessage = err.response.statusText;
+        } else {
+          _this2.errorMessage = err.response.data.response;
+        }
+        _this2.forms.submit = 'Edit';
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getLocationID();
+  }
+});
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", [_vm._v("Location ID")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "uk-form-stacked",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateLocation($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.forms.locationid,
+                expression: "forms.locationid"
+              }
+            ],
+            staticClass: "uk-width-medium uk-input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.forms.locationid },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.forms, "locationid", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("button", {
+            staticClass: "uk-button uk-button-default",
+            domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+          })
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-da2b23c8", module.exports)
+  }
+}
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(95)
+/* template */
+var __vue_template__ = __webpack_require__(96)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/api/RadiusIP.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4b3ee845", Component.options)
+  } else {
+    hotAPI.reload("data-v-4b3ee845", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'device'],
+  data: function data() {
+    return {
+      forms: {
+        id: '',
+        radiusip: '',
+        submit: 'Edit'
+      },
+      locationid: []
+    };
+  },
+
+  methods: {
+    getLocationID: function getLocationID() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/locationid/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.locationid = result.result[1];
+        _this.forms.id = _this.locationid['.id'];
+        _this.forms.radiusip = _this.locationid['hotspot-address'];
+      }).catch(function (err) {
+        console.log(err.response.statusText);
+      });
+    },
+    updateRadiusIp: function updateRadiusIp() {
+      var _this2 = this;
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'put',
+        url: this.url + '/api/mikrotik/update/radius_ip/' + this.device.device_id,
+        params: {
+          id: this.forms.id,
+          radius_ip: this.forms.radiusip
+        }
+      }).then(function (res) {
+        var result = res.data;
+        swal({
+          title: 'Success',
+          text: result.response,
+          icon: 'success',
+          timer: 3000
+        });
+        _this2.forms.submit = 'Edit';
+        _this2.getLocationID();
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          _this2.errorMessage = err.response.statusText;
+        } else {
+          _this2.errorMessage = err.response.data.response;
+        }
+        _this2.forms.submit = 'Edit';
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getLocationID();
+  }
+});
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", [_vm._v("Radius IP")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "uk-form-stacked",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateRadiusIp($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.forms.radiusip,
+                expression: "forms.radiusip"
+              }
+            ],
+            staticClass: "uk-width-medium uk-input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.forms.radiusip },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.forms, "radiusip", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("button", {
+            staticClass: "uk-button uk-button-default",
+            domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+          })
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4b3ee845", module.exports)
+  }
+}
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(98)
+/* template */
+var __vue_template__ = __webpack_require__(99)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/api/WalledGarden.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-08075e0a", Component.options)
+  } else {
+    hotAPI.reload("data-v-08075e0a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'device'],
+  data: function data() {
+    return {
+      forms: {
+        id: '',
+        server: '',
+        dsthost: '',
+        error: false,
+        submit: 'Add'
+      },
+      errors: {},
+      errorMessage: '',
+      walled_garden: [],
+      hotspotserver: []
+    };
+  },
+
+  methods: {
+    getWalledGarden: function getWalledGarden() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/walled_garden/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.walled_garden = result.result;
+      }).catch(function (err) {
+        console.log(err.response.statusText);
+      });
+    },
+    getHotspotServer: function getHotspotServer() {
+      var _this2 = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/hotspot_server/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this2.hotspotserver = result.result;
+      }).catch(function (err) {
+        console.log(err.response.status);
+      });
+    },
+    showModal: function showModal(walled) {
+      if (walled === undefined) {
+        this.forms.id = '';
+        this.forms.server = '';
+        this.forms.dsthost = '';
+        this.forms.edit = false;
+        this.forms.submit = 'Add';
+      } else {
+        this.forms.id = walled['.id'];
+        this.forms.server = walled.server;
+        this.forms.dsthost = walled['dst-host'];
+        this.forms.edit = true;
+        this.forms.submit = 'Edit';
+      }
+      this.errors = {};
+      this.errorMessage = '';
+      UIkit.modal('#modal').show();
+    },
+    addOrUpdateWalledGarden: function addOrUpdateWalledGarden() {
+      var _this3 = this;
+
+      this.errors = {};
+      this.errorMessage = '';
+
+      var url,
+          method,
+          param = {};
+      if (this.forms.dstaddress === undefined) {
+        this.forms.dstaddress = '';
+      }
+
+      if (this.forms.dsthost === undefined) {
+        this.forms.dsthost = '';
+      }
+
+      if (this.forms.server === undefined) {
+        this.forms.server = '';
+      }
+
+      if (this.forms.edit === true) {
+        url = this.url + '/api/mikrotik/update/walled_garden/' + this.device.device_id;
+        method = 'put';
+        param = {
+          dsthost: this.forms.dsthost,
+          hs: this.forms.server,
+          id: this.forms.id
+        };
+      } else {
+        url = this.url + '/api/mikrotik/add/walled_garden/' + this.device.device_id;
+        method = 'post';
+        param = {
+          dsthost: this.forms.dsthost,
+          hs: this.forms.server
+        };
+      }
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: method,
+        url: url,
+        params: param
+      }).then(function (res) {
+        swal({
+          title: 'Success',
+          text: res.data.response,
+          icon: 'success',
+          timer: 3000
+        });
+        _this3.getWalledGarden();
+        setTimeout(function () {
+          UIkit.modal('#modal').hide();
+        }, 2000);
+        _this3.forms.submit = 'Add';
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          _this3.errorMessage = err.response.data.message;
+        } else {
+          _this3.errorMessage = err.response.data.response;
+        }
+        _this3.forms.submit = _this3.forms.edit === true ? 'Edit' : 'Add';
+      });
+    },
+    deleteWalledGarden: function deleteWalledGarden(wd) {
+      var _this4 = this;
+
+      swal({
+        title: 'Confirmation',
+        text: 'Are you sure want delete this walled garden?',
+        icon: 'warning',
+        dangerMode: true,
+        buttons: {
+          cancel: true,
+          confirm: {
+            text: 'Delete',
+            value: true
+          }
+        }
+      }).then(function (val) {
+        if (val) {
+          axios({
+            method: 'delete',
+            url: _this4.url + '/api/mikrotik/delete/walled_garden/' + _this4.device.device_id + '?id=' + wd['.id']
+          }).then(function (res) {
+            swal({
+              title: 'Success',
+              text: res.data.response,
+              icon: 'success'
+            });
+            _this4.getWalledGarden();
+          }).catch(function (err) {
+            if (err.response.status === 500) {
+              swal({
+                title: 'Error',
+                text: err.response.data.message,
+                icon: 'error',
+                dangerMode: true
+              });
+            } else {
+              swal({
+                title: 'Error',
+                text: err.response.data.response,
+                icon: 'error',
+                dangerMode: true
+              });
+            }
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getWalledGarden();this.getHotspotServer();
+  }
+});
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { attrs: { id: "modal", "uk-modal": "" } }, [
+      _c("div", { staticClass: "uk-modal-dialog uk-modal-body" }, [
+        _c("a", {
+          staticClass: "uk-modal-close-default",
+          attrs: { "uk-close": "" }
+        }),
+        _vm._v(" "),
+        _c("h3", [
+          _vm.forms.edit
+            ? _c("span", [_vm._v("Edit Walled Garden")])
+            : _c("span", [_vm._v("Add Walled Garden")])
+        ]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "uk-form-stacked",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.addOrUpdateWalledGarden($event)
+              }
+            }
+          },
+          [
+            _vm.errorMessage
+              ? _c(
+                  "div",
+                  { staticClass: "uk-alert-danger", attrs: { "uk-alert": "" } },
+                  [_vm._v(_vm._s(_vm.errorMessage))]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [_vm._v("Server")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.forms.server,
+                        expression: "forms.server"
+                      }
+                    ],
+                    staticClass: "uk-select",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.forms,
+                          "server",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("-- Server --")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.hotspotserver, function(hs) {
+                      return _c("option", { domProps: { value: hs.name } }, [
+                        _vm._v(_vm._s(hs.name))
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Dst. Host")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.forms.dsthost,
+                      expression: "forms.dsthost"
+                    }
+                  ],
+                  staticClass: "uk-input",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.forms.dsthost },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.forms, "dsthost", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("button", {
+                staticClass: "uk-button uk-button-primary",
+                domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "uk-button uk-button-default uk-modal-close" },
+                [_vm._v("Close")]
+              )
+            ])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("h3", [_vm._v("Walled Garden")]),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "uk-button uk-button-default",
+        on: {
+          click: function($event) {
+            _vm.showModal()
+          }
+        }
+      },
+      [_vm._v("Add Walled Garden")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "uk-overflow-auto uk-margin-top" }, [
+      _c(
+        "table",
+        {
+          staticClass:
+            "uk-table uk-table-middle uk-table-hover uk-table-striped uk-table-small uk-table-condensed"
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.walled_garden, function(wd) {
+              return wd["dst-host"] !== undefined
+                ? _c("tr", [
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "uk-button uk-button-text",
+                          attrs: { "uk-tooltip": "Edit" },
+                          on: {
+                            click: function($event) {
+                              _vm.showModal(wd)
+                            }
+                          }
+                        },
+                        [_c("span", { attrs: { "uk-icon": "pencil" } })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "uk-button uk-button-text",
+                          attrs: { "uk-tooltip": "Delete" },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteWalledGarden(wd)
+                            }
+                          }
+                        },
+                        [_c("span", { attrs: { "uk-icon": "trash" } })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(wd.server))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(wd["dst-host"]))])
+                  ])
+                : _vm._e()
+            })
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Server")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Dst Host")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-08075e0a", module.exports)
+  }
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(101)
+/* template */
+var __vue_template__ = __webpack_require__(102)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/api/SessionTimeout.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b594e612", Component.options)
+  } else {
+    hotAPI.reload("data-v-b594e612", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url'],
+  data: function data() {
+    return {};
+  },
+
+  methods: {}
+});
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b594e612", module.exports)
+  }
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(104)
+/* template */
+var __vue_template__ = __webpack_require__(105)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/api/Bandwidth.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2e71f055", Component.options)
+  } else {
+    hotAPI.reload("data-v-2e71f055", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url'],
+  data: function data() {
+    return {};
+  },
+
+  methods: {}
+});
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2e71f055", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

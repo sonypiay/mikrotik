@@ -116,7 +116,6 @@
         <tbody>
           <tr v-for="(device, index) in devices.results">
             <td>
-              <!--<a class="uk-button uk-button-text" v-bind:href="url + '/device/' + device.device_id" uk-icon="forward" uk-tooltip title="View"></a>-->
               <a @click="updateDevices(device)" class="uk-button uk-button-text" uk-tooltip title="Edit" uk-icon="pencil"></a>
               <a @click="deleteDevices(device.device_id)" class="uk-button uk-button-text" uk-tooltip title="Delete" uk-icon="trash"></a>
             </td>
@@ -124,7 +123,7 @@
             <td>{{ device.region_domain_name }}</td>
             <td>
               <a class="uk-button uk-button-text" :href="url + '/devices/monitor/' + device.device_id" uk-tooltip="Monitor"><span uk-icon="info"></span></a>
-              <a class="uk-button uk-button-text" href="#" uk-icon="cog" uk-tooltip="Controller"></a>
+              <a class="uk-button uk-button-text" :href="url + '/devices/controller/' + device.device_id" uk-icon="cog" uk-tooltip="Controller"></a>
             </td>
             <!--<td>
               <div v-for="status in devices.statusdevice">

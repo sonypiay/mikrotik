@@ -131,4 +131,67 @@ class MikrotikAPI extends Controller
     $service = $mikrotik->findService( $request );
     return response()->json( $service );
   }
+  public function show_locationid( $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $location = $mikrotik->locationid();
+    return response()->json( $location );
+  }
+
+  public function updateLocation( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $location = $mikrotik->updateLocation( $request );
+    return response()->json( $location );
+  }
+
+  public function updateRadiusIp( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $location = $mikrotik->updateRadiusIp( $request );
+    return response()->json( $location );
+  }
+
+  public function hotspot_server( $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $server = $mikrotik->hotspot_server();
+    return response()->json( $server );
+  }
+
+  public function show_walledgarden( $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $walledgarden = $mikrotik->walled_garden();
+    return response()->json( $walledgarden );
+  }
+
+  public function addWalledGarden( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $walledgarden = $mikrotik->addWalledGarden( $request );
+    return response()->json( $walledgarden );
+  }
+
+  public function updateWalledGarden( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $walledgarden = $mikrotik->updateWalledGarden( $request );
+    return response()->json( $walledgarden );
+  }
+
+  public function deleteWalledGarden( Request $request, $id )
+  {
+    $devices = Devices::where('device_id', $id)->first();
+    $mikrotik = new Mikrotik( $devices->device_ip, $devices->device_username, $devices->device_password, $devices->device_port_api );
+    $walledgarden = $mikrotik->deleteWalledGarden( $request );
+    return response()->json( $walledgarden );
+  }
 }

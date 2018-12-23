@@ -262,6 +262,78 @@ class Mikrotik {
     }
     return $res;
   }
+
+  public function locationid()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => $login['command']->comm('/ip/hotspot/profile/print')
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
+
+  public function hotspot_server()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => $login['command']->comm('/ip/hotspot/print')
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
+
+  public function walled_garden()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => $login['command']->comm('/ip/hotspot/walled-garden/print')
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
 }
 
 trait MikrotikManipulate {
@@ -465,6 +537,211 @@ trait MikrotikManipulate {
           'ip' => $this->ip,
           'status' => 200,
           'response' => $iface . ' graph has removed',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function updateLocation( $request )
+  {
+    $location_id = $request->location_id;
+    $id = $request->id;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/ip/hotspot/profile/set', [
+        '.id' => $id,
+        'radius-location-id' => $location_id
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'Location ID has changed',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function updateRadiusIp( $request )
+  {
+    $radius_ip = $request->radius_ip;
+    $id = $request->id;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/ip/hotspot/profile/set', [
+        '.id' => $id,
+        'hotspot-address' => $radius_ip
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'Radius address has changed',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function addWalledGarden( $request )
+  {
+    $dsthost = $request->dsthost;
+    $server = $request->hs;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/ip/hotspot/walled-garden/add', [
+        'server' => $server,
+        'dst-host' => $dsthost
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'New walled garden added',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function updateWalledGarden( $request )
+  {
+    $dsthost = $request->dsthost;
+    $server = $request->hs;
+    $id = $request->id;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/ip/hotspot/walled-garden/set', [
+        '.id' => $id,
+        'server' => $server,
+        'dst-host' => $dsthost
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'Walled garden has been updated',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function deleteWalledGarden( $request )
+  {
+    $id = $request->id;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/ip/hotspot/walled-garden/remove', [
+        '.id' => $id
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'Walled garden has deleted',
         ];
       }
     }

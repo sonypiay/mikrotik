@@ -83,5 +83,6 @@ Route::group(['prefix' => 'devices'], function() {
   Route::put('/update/{id}', 'Pages\DevicesController@update');
   Route::delete('/delete/{id}', 'Pages\DevicesController@destroy');
   Route::get('/monitor/{id}', 'Pages\DevicesController@detaildevice')->name('detaildevice');
+  Route::get('/controller/{id}', 'Pages\DevicesController@controllerdevice');
 });
 // devices
