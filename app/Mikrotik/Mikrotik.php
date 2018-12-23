@@ -369,6 +369,34 @@ class Mikrotik {
     }
     return $res;
   }
+
+  public function sessionTimeout()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $download = $login['command']->comm('/ip/hotspot/user/profile/print', [
+        '?name' => 'pcq-down-biznethotspot'
+      ]);
+
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' =>
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
 }
 
 trait MikrotikManipulate {
@@ -798,23 +826,19 @@ trait MikrotikManipulate {
     if( $login['response'] == 'connected' )
     {
       $download = $login['command']->comm('/queue/type/set', [
-        '.id' => $id_upload,
+        '.id' => $id_download,
         'pcq-rate' => $download
       ]);
 
       $upload = $login['command']->comm('/queue/type/set', [
-        '.id' => $id_download,
+        '.id' => $id_upload,
         'pcq-rate' => $upload
       ]);
 
       $res = [
         'ip' => $this->ip,
         'status' => 200,
-        'response' => 'Connected',
-        'result' => [
-          'download' => $download,
-          'upload' => $upload
-        ]
+        'response' => 'Update changed'
       ];
     }
     else
