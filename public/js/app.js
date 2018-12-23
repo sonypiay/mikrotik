@@ -53856,6 +53856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'domain'],
@@ -54056,12 +54057,20 @@ var render = function() {
                     _vm._l(_vm.devices.statusdevice, function(status) {
                       return _c("div", [
                         status.ip === device.device_ip
-                          ? _c("span", [
-                              _vm._v(
-                                "\r\n                  " +
-                                  _vm._s(status.response) +
-                                  "\r\n                "
-                              )
+                          ? _c("div", [
+                              status.response === "Connected"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass: "uk-label uk-label-success"
+                                    },
+                                    [_vm._v("Up")]
+                                  )
+                                : _c(
+                                    "span",
+                                    { staticClass: "uk-label uk-label-danger" },
+                                    [_vm._v("Down")]
+                                  )
                             ])
                           : _vm._e()
                       ])

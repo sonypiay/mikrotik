@@ -37,9 +37,10 @@
             <td>{{ device.region_domain_name }}</td>
             <td>
               <div v-for="status in devices.statusdevice">
-                <span v-if="status.ip === device.device_ip">
-                  {{ status.response }}
-                </span>
+                <div v-if="status.ip === device.device_ip">
+                  <span v-if="status.response === 'Connected'" class="uk-label uk-label-success">Up</span>
+                  <span v-else class="uk-label uk-label-danger">Down</span>
+                </div>
               </div>
             </td>
             <td>
