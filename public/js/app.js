@@ -54830,7 +54830,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       forms: {
         id: '',
-        server: '',
         dsthost: '',
         error: false,
         submit: 'Add'
@@ -54872,13 +54871,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     showModal: function showModal(walled) {
       if (walled === undefined) {
         this.forms.id = '';
-        this.forms.server = '';
         this.forms.dsthost = '';
         this.forms.edit = false;
         this.forms.submit = 'Add';
       } else {
         this.forms.id = walled['.id'];
-        this.forms.server = walled.server;
         this.forms.dsthost = walled['dst-host'];
         this.forms.edit = true;
         this.forms.submit = 'Edit';
@@ -54904,24 +54901,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.forms.dsthost = '';
       }
 
-      if (this.forms.server === undefined) {
-        this.forms.server = '';
-      }
-
       if (this.forms.edit === true) {
         url = this.url + '/api/mikrotik/update/walled_garden/' + this.device.device_id;
         method = 'put';
         param = {
           dsthost: this.forms.dsthost,
-          hs: this.forms.server,
           id: this.forms.id
         };
       } else {
         url = this.url + '/api/mikrotik/add/walled_garden/' + this.device.device_id;
         method = 'post';
         param = {
-          dsthost: this.forms.dsthost,
-          hs: this.forms.server
+          dsthost: this.forms.dsthost
         };
       }
 
@@ -55045,58 +55036,6 @@ var render = function() {
                   [_vm._v(_vm._s(_vm.errorMessage))]
                 )
               : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin" }, [
-              _c("label", { staticClass: "uk-form-label" }, [_vm._v("Server")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-form-controls" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.forms.server,
-                        expression: "forms.server"
-                      }
-                    ],
-                    staticClass: "uk-select",
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.forms,
-                          "server",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("-- Server --")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.hotspotserver, function(hs) {
-                      return _c("option", { domProps: { value: hs.name } }, [
-                        _vm._v(_vm._s(hs.name))
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ])
-            ]),
             _vm._v(" "),
             _c("div", { staticClass: "uk-margin" }, [
               _c("label", { staticClass: "uk-form-label" }, [
@@ -55301,14 +55240,85 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
+  props: ['url', 'device'],
   data: function data() {
-    return {};
+    return {
+      forms: {
+        id: '',
+        session: 0,
+        submit: 'Edit'
+      }
+    };
   },
 
-  methods: {}
+  methods: {
+    getSessionTimeout: function getSessionTimeout() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/sessiontimeout/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.forms.id = result.result[0]['.id'];
+        _this.forms.session = result.result[0]['session-timeout'];
+        console.log(result);
+      }).catch(function (err) {
+        console.log(err.response.statusText);
+      });
+    },
+    updateSessionTimeout: function updateSessionTimeout() {
+      var _this2 = this;
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'put',
+        url: this.url + '/api/mikrotik/update/sessiontimeout/' + this.device.device_id,
+        params: {
+          id: this.forms.id,
+          sessiontimeout: this.forms.session
+        }
+      }).then(function (res) {
+        swal({
+          title: 'Success',
+          text: res.data.response,
+          icon: 'success'
+        });
+        _this2.forms.submit = 'Edit';
+        _this2.getSessionTimeout();
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          swal({
+            title: 'Error',
+            text: err.response.data.message,
+            icon: 'error',
+            dangerMode: true
+          });
+        } else {
+          swal({
+            title: 'Error',
+            text: err.response.data.response,
+            icon: 'error',
+            dangerMode: true
+          });
+        }
+        _this2.forms.submit = 'Edit';
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSessionTimeout();
+  }
 });
 
 /***/ }),
@@ -55319,7 +55329,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("h3", [_vm._v("Session Timeout")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "uk-form-stacked",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateSessionTimeout($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.forms.session,
+                expression: "forms.session"
+              }
+            ],
+            staticClass: "uk-width-medium uk-input",
+            attrs: {
+              type: "text",
+              "uk-tooltip": "",
+              title: "format: 0h0m0s|00:00:00"
+            },
+            domProps: { value: _vm.forms.session },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.forms, "session", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("button", {
+            staticClass: "uk-button uk-button-default",
+            domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+          })
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55390,14 +55451,105 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
+  props: ['url', 'device'],
   data: function data() {
-    return {};
+    return {
+      forms: {
+        upload: 0,
+        download: 0,
+        submit: 'Edit'
+      },
+      bandwidth: {
+        upload: [],
+        download: []
+      }
+    };
   },
 
-  methods: {}
+  methods: {
+    getBandwidth: function getBandwidth() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/bandwidth/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.bandwidth.upload = result.result.upload[0];
+        _this.bandwidth.download = result.result.download[0];
+        _this.forms.upload = _this.bandwidth.upload['pcq-rate'];
+        _this.forms.download = _this.bandwidth.download['pcq-rate'];
+      }).catch(function (err) {
+        console.log(err.response.statusText);
+      });
+    },
+    formatSize: function formatSize(size) {
+      var sizes = ['B', 'K', 'M', 'G', 'T'];
+      var result;
+      if (isNaN(size)) {
+        result = 'NaN';
+      } else {
+        if (size == 0) return '0 Byte';
+        var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
+        result = Math.round(size / Math.pow(1024, i), 2) + sizes[i];
+      }
+      return result;
+    },
+    updateBandwidth: function updateBandwidth() {
+      var _this2 = this;
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'put',
+        url: this.url + '/api/mikrotik/update/bandwidth/' + this.device.device_id,
+        params: {
+          upload: this.forms.upload,
+          download: this.forms.download,
+          id_upload: this.bandwidth.upload['.id'],
+          id_download: this.bandwidth.download['.id']
+        }
+      }).then(function (res) {
+        var result = res.data;
+        swal({
+          title: 'Success',
+          text: result.response,
+          icon: 'success',
+          timer: 3000
+        });
+        _this2.forms.submit = 'Edit';
+        _this2.getBandwidth();
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          _this2.errorMessage = err.response.statusText;
+        } else {
+          _this2.errorMessage = err.response.data.response;
+        }
+        _this2.forms.submit = 'Edit';
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getBandwidth();
+  }
 });
 
 /***/ }),
@@ -55408,7 +55560,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("h3", [_vm._v("Bandwidth")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "uk-form-stacked",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateBandwidth($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("label", { staticClass: "uk-form-label" }, [_vm._v("Upload")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "uk-form-controls" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.forms.upload,
+                  expression: "forms.upload"
+                }
+              ],
+              staticClass: "uk-width-medium uk-input",
+              attrs: { type: "text" },
+              domProps: { value: _vm.forms.upload },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.forms, "upload", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("label", { staticClass: "uk-form-label" }, [_vm._v("Download")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "uk-form-controls" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.forms.download,
+                  expression: "forms.download"
+                }
+              ],
+              staticClass: "uk-width-medium uk-input",
+              attrs: { type: "text" },
+              domProps: { value: _vm.forms.download },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.forms, "download", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("button", {
+            staticClass: "uk-button uk-button-default",
+            domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+          })
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

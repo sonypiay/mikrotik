@@ -334,6 +334,67 @@ class Mikrotik {
     }
     return $res;
   }
+
+  public function show_bandwidth()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $download = $login['command']->comm('/queue/type/print', [
+        '?name' => 'pcq-down-biznethotspot'
+      ]);
+
+      $upload = $login['command']->comm('/queue/type/print', [
+        '?name' => 'pcq-up-biznethotspot'
+      ]);
+
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => [
+          'download' => $download,
+          'upload' => $upload
+        ]
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
+
+  public function sessionTimeout()
+  {
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Connected',
+        'result' => $login['command']->comm('/ip/hotspot/user/profile/print', [
+          '?name' => 'BiznetHotspot'
+        ])
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
 }
 
 trait MikrotikManipulate {
@@ -636,13 +697,11 @@ trait MikrotikManipulate {
   public function addWalledGarden( $request )
   {
     $dsthost = $request->dsthost;
-    $server = $request->hs;
 
     $login = $this->login();
     if( $login['response'] == 'connected' )
     {
       $comm = $login['command']->comm('/ip/hotspot/walled-garden/add', [
-        'server' => $server,
         'dst-host' => $dsthost
       ]);
 
@@ -677,7 +736,6 @@ trait MikrotikManipulate {
   public function updateWalledGarden( $request )
   {
     $dsthost = $request->dsthost;
-    $server = $request->hs;
     $id = $request->id;
 
     $login = $this->login();
@@ -685,7 +743,6 @@ trait MikrotikManipulate {
     {
       $comm = $login['command']->comm('/ip/hotspot/walled-garden/set', [
         '.id' => $id,
-        'server' => $server,
         'dst-host' => $dsthost
       ]);
 
@@ -720,7 +777,6 @@ trait MikrotikManipulate {
   public function deleteWalledGarden( $request )
   {
     $id = $request->id;
-
     $login = $this->login();
     if( $login['response'] == 'connected' )
     {
@@ -742,6 +798,85 @@ trait MikrotikManipulate {
           'ip' => $this->ip,
           'status' => 200,
           'response' => 'Walled garden has deleted',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+      ];
+    }
+    return $res;
+  }
+
+  public function updateBandwidth( $request )
+  {
+    $upload = $request->upload;
+    $download = $request->download;
+    $id_upload = $request->id_upload;
+    $id_download = $request->id_download;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $download = $login['command']->comm('/queue/type/set', [
+        '.id' => $id_download,
+        'pcq-rate' => $download
+      ]);
+
+      $upload = $login['command']->comm('/queue/type/set', [
+        '.id' => $id_upload,
+        'pcq-rate' => $upload
+      ]);
+
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Update changed'
+      ];
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
+        'result' => null
+      ];
+    }
+    return $res;
+  }
+
+  public function updateSessionTimeout( $request )
+  {
+    $id = $request->id;
+    $sessiontimeout = $request->sessiontimeout;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/ip/hotspot/user/profile/set', [
+        '.id' => $id,
+        'session-timeout' => $sessiontimeout
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'Session timeout updated',
         ];
       }
     }

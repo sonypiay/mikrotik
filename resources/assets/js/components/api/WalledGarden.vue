@@ -10,7 +10,7 @@
         </h3>
         <form class="uk-form-stacked" @submit.prevent="addOrUpdateWalledGarden">
           <div v-if="errorMessage" class="uk-alert-danger" uk-alert>{{ errorMessage }}</div>
-          <div class="uk-margin">
+          <!--<div class="uk-margin">
             <label class="uk-form-label">Server</label>
             <div class="uk-form-controls">
               <select class="uk-select" v-model="forms.server">
@@ -18,7 +18,7 @@
                 <option v-for="hs in hotspotserver" :value="hs.name">{{ hs.name }}</option>
               </select>
             </div>
-          </div>
+          </div>-->
           <div class="uk-margin">
             <label class="uk-form-label">Dst. Host</label>
             <div class="uk-form-controls">
@@ -66,7 +66,6 @@ export default {
     return {
       forms: {
         id: '',
-        server: '',
         dsthost: '',
         error: false,
         submit: 'Add'
@@ -106,7 +105,6 @@ export default {
       if( walled === undefined )
       {
         this.forms.id = '';
-        this.forms.server = '';
         this.forms.dsthost = '';
         this.forms.edit = false;
         this.forms.submit = 'Add';
@@ -114,7 +112,6 @@ export default {
       else
       {
         this.forms.id = walled['.id'];
-        this.forms.server = walled.server;
         this.forms.dsthost = walled['dst-host'];
         this.forms.edit = true;
         this.forms.submit = 'Edit';
@@ -139,18 +136,12 @@ export default {
         this.forms.dsthost = '';
       }
 
-      if( this.forms.server === undefined )
-      {
-        this.forms.server = '';
-      }
-
       if( this.forms.edit === true )
       {
         url = this.url + '/api/mikrotik/update/walled_garden/' + this.device.device_id;
         method = 'put';
         param = {
           dsthost: this.forms.dsthost,
-          hs: this.forms.server,
           id: this.forms.id
         };
       }
@@ -159,8 +150,7 @@ export default {
         url = this.url + '/api/mikrotik/add/walled_garden/' + this.device.device_id;
         method = 'post';
         param = {
-          dsthost: this.forms.dsthost,
-          hs: this.forms.server
+          dsthost: this.forms.dsthost
         };
       }
 
