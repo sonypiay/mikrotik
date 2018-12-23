@@ -55240,14 +55240,85 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
+  props: ['url', 'device'],
   data: function data() {
-    return {};
+    return {
+      forms: {
+        id: '',
+        session: 0,
+        submit: 'Edit'
+      }
+    };
   },
 
-  methods: {}
+  methods: {
+    getSessionTimeout: function getSessionTimeout() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: this.url + '/api/mikrotik/sessiontimeout/' + this.device.device_id
+      }).then(function (res) {
+        var result = res.data;
+        _this.forms.id = result.result[0]['.id'];
+        _this.forms.session = result.result[0]['session-timeout'];
+        console.log(result);
+      }).catch(function (err) {
+        console.log(err.response.statusText);
+      });
+    },
+    updateSessionTimeout: function updateSessionTimeout() {
+      var _this2 = this;
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'put',
+        url: this.url + '/api/mikrotik/update/sessiontimeout/' + this.device.device_id,
+        params: {
+          id: this.forms.id,
+          sessiontimeout: this.forms.session
+        }
+      }).then(function (res) {
+        swal({
+          title: 'Success',
+          text: res.data.response,
+          icon: 'success'
+        });
+        _this2.forms.submit = 'Edit';
+        _this2.getSessionTimeout();
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          swal({
+            title: 'Error',
+            text: err.response.data.message,
+            icon: 'error',
+            dangerMode: true
+          });
+        } else {
+          swal({
+            title: 'Error',
+            text: err.response.data.response,
+            icon: 'error',
+            dangerMode: true
+          });
+        }
+        _this2.forms.submit = 'Edit';
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSessionTimeout();
+  }
 });
 
 /***/ }),
@@ -55258,7 +55329,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("h3", [_vm._v("Session Timeout")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "uk-form-stacked",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateSessionTimeout($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.forms.session,
+                expression: "forms.session"
+              }
+            ],
+            staticClass: "uk-width-medium uk-input",
+            attrs: {
+              type: "text",
+              "uk-tooltip": "",
+              title: "format: 0h0m0s|00:00:00"
+            },
+            domProps: { value: _vm.forms.session },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.forms, "session", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("button", {
+            staticClass: "uk-button uk-button-default",
+            domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+          })
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -30,6 +30,7 @@ Route::group(['prefix' => '/mikrotik'], function() {
   Route::get('/walled_garden/{id}', 'Api\MikrotikAPI@show_walledgarden');
   Route::get('/hotspot_server/{id}', 'Api\MikrotikAPI@hotspot_server');
   Route::get('/bandwidth/{id}', 'Api\MikrotikAPI@show_bandwidth');
+  Route::get('/sessiontimeout/{id}', 'Api\MikrotikAPI@sessiontimeout');
 
   Route::group(['prefix' => 'add'], function() {
     Route::post('/vlan/{id}', 'Api\MikrotikAPI@addvlan');
@@ -42,6 +43,7 @@ Route::group(['prefix' => '/mikrotik'], function() {
     Route::put('/radius_ip/{id}', 'Api\MikrotikAPI@updateradiusip');
     Route::put('/walled_garden/{id}', 'Api\MikrotikAPI@updateWalledGarden');
     Route::put('/bandwidth/{id}', 'Api\MikrotikAPI@updateBandwidth');
+    Route::put('/sessiontimeout/{id}', 'Api\MikrotikAPI@updateSessionTimeout');
   });
   Route::group(['prefix' => 'delete'], function() {
     Route::delete('/vlan/{id}', 'Api\MikrotikAPI@deletevlan');

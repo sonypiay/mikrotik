@@ -375,15 +375,13 @@ class Mikrotik {
     $login = $this->login();
     if( $login['response'] == 'connected' )
     {
-      $download = $login['command']->comm('/ip/hotspot/user/profile/print', [
-        '?name' => 'pcq-down-biznethotspot'
-      ]);
-
       $res = [
         'ip' => $this->ip,
         'status' => 200,
         'response' => 'Connected',
-        'result' =>
+        'result' => $login['command']->comm('/ip/hotspot/user/profile/print', [
+          '?name' => 'BiznetHotspot'
+        ])
       ];
     }
     else
@@ -779,7 +777,6 @@ trait MikrotikManipulate {
   public function deleteWalledGarden( $request )
   {
     $id = $request->id;
-
     $login = $this->login();
     if( $login['response'] == 'connected' )
     {
@@ -848,6 +845,47 @@ trait MikrotikManipulate {
         'status' => 200,
         'response' => 'Not connected',
         'result' => null
+      ];
+    }
+    return $res;
+  }
+
+  public function updateSessionTimeout( $request )
+  {
+    $id = $request->id;
+    $sessiontimeout = $request->sessiontimeout;
+
+    $login = $this->login();
+    if( $login['response'] == 'connected' )
+    {
+      $comm = $login['command']->comm('/ip/hotspot/user/profile/set', [
+        '.id' => $id,
+        'session-timeout' => $sessiontimeout
+      ]);
+
+      if( isset( $comm['!trap'] ) )
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 500,
+          'response' => $comm['!trap'][0]['message']
+        ];
+      }
+      else
+      {
+        $res = [
+          'ip' => $this->ip,
+          'status' => 200,
+          'response' => 'Session timeout updated',
+        ];
+      }
+    }
+    else
+    {
+      $res = [
+        'ip' => $this->ip,
+        'status' => 200,
+        'response' => 'Not connected',
       ];
     }
     return $res;
