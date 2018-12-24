@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pages;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Database\Region;
 use App\Database\RegionDomain;
 use App\Database\Users;
@@ -144,6 +145,103 @@ class UsersController extends Controller
         'statusText' => ''
       ];
     }
+    return response()->json( $res, $res['status'] );
+  }
+
+  public function userprofile( Request $request, Users $users )
+  {
+    if( $request->session()->has('hasLogin') )
+    {
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+
+      return response()->view('pages.userprofile', [
+        'request' => $request,
+        'getSession' => $session,
+        'users' => $users
+      ]);
+    }
+    else
+    {
+      return redirect( route('loginpage') );
+    }
+  }
+
+  public function saveprofile( Request $request, Users $users )
+  {
+    $fullname = $request->fullname;
+    $username = $request->username;
+    $password = $request->password;
+    $session = $request->session()->get('hasLogin');
+    $selecteduser = $users->where('user_id','=', $session['userid'])->first();
+    if( $username == $selecteduser->username )
+    {
+      $updated = $selecteduser;
+      $updated->fullname = $fullname;
+      $updated->username = $username;
+      if( ! empty( $password ) ) { $updated->password = Hash::make( $password ); }
+      $updated->save();
+      $res = [
+        'status' => 200,
+        'statusText' => 'Profile has chamged.'
+      ];
+    }
+    else
+    {
+      $check = $users->where('username', '=', $username);
+      if( $check->count() === 1 )
+      {
+        $res = [
+          'status' => 409,
+          'statusText' => 'Username has already exists'
+        ];
+      }
+      else
+      {
+        $updated = $users->where('user_id','=', $id)->first();
+        $updated->fullname = $fullname;
+        $updated->username = $username;
+        if( ! empty( $password ) ) { $updated->password = Hash::make( $password ); }
+        $updated->save();
+        $res = [
+          'status' => 200,
+          'statusText' => 'Profile has chamged.'
+        ];
+      }
+    }
+    return response()->json( $res, $res['status'] );
+  }
+
+  public function savepicture( Request $request, Users $users, Storage $storage )
+  {
+    $picture = $request->picture;
+    $getfilename = $picture->hashName();
+    $storage = $storage::disk('profile');
+    $session = $request->session()->get('hasLogin');
+    $users = $users->where('user_id', $session['userid'])->first();
+
+    if( $users->profile_picture === '' || empty( $users->profile_picture ) )
+    {
+      $storage->putFileAs('avatar', $picture, $getfilename);
+    }
+    else
+    {
+      $checkimage = $storage->exists( 'avatar/' . $users->profile_picture );
+      if( $checkimage )
+      {
+        $storage->delete('avatar/' . $users->profile_picture);
+      }
+      $storage->putFileAs('avatar', $picture, $getfilename);
+    }
+    
+    $users->profile_picture = $getfilename;
+    $users->save();
+
+    $res = [
+      'status' => 200,
+      'statusText' => 'Picture has been changed'
+    ];
+
     return response()->json( $res, $res['status'] );
   }
 }

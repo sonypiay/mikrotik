@@ -64,6 +64,13 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'profile' => [
+          'driver' => 'local',
+          'root' => 'images',
+          'url' => env('APP_URL').'/public',
+          'visibility' => 'public',
+        ],
+
     ],
 
 ];

@@ -167,6 +167,7 @@
 .mainnav .profile_info .profile_name a {
   color: #aaaaaa;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .mainnav .profile_info .profile_name a:hover {

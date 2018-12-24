@@ -30,7 +30,7 @@
             </div>
             @endif
             <div class="profile_name">
-              <a href="#">{{ $users->fullname }}</a>
+              <a href="{{ route('userprofile_page') }}">{{ $users->fullname }}</a>
             </div>
             <div class="profile_privilege">
               @if( $users->privilege === 'full' )

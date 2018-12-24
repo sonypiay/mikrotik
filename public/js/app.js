@@ -14402,6 +14402,7 @@ Vue.component('getdevices', __webpack_require__(64));
 Vue.component('dashboardsection', __webpack_require__(76));
 Vue.component('locationdevice', __webpack_require__(81));
 Vue.component('controllerdevice', __webpack_require__(84));
+Vue.component('userprofile', __webpack_require__(107));
 
 var app = new Vue({
   el: '#app'
@@ -56585,6 +56586,482 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! @preserve
 return numeral;
 }));
 
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(108)
+/* template */
+var __vue_template__ = __webpack_require__(109)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/UserProfile.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b824f228", Component.options)
+  } else {
+    hotAPI.reload("data-v-b824f228", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 108 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'users'],
+  data: function data() {
+    return {
+      forms: {
+        username: this.users.username,
+        fullname: this.users.fullname,
+        password: '',
+        picture: '',
+        error: false,
+        submit: 'Save',
+        submitPicture: 'Save Picture'
+      },
+      errors: {},
+      errorMessage: ''
+    };
+  },
+
+  methods: {
+    saveProfileInfo: function saveProfileInfo() {
+      var _this = this;
+
+      this.errors = {};
+      this.errorMessage = '';
+
+      if (this.forms.username === '') {
+        this.errors.username = 'Please fill your username';
+        this.forms.error = true;
+      }
+
+      if (this.forms.fullname === '') {
+        this.errors.fullname = 'Please fill your Fullname';
+        this.forms.error = true;
+      }
+
+      if (this.forms.error === true) {
+        this.forms.error = false;
+        return false;
+      }
+
+      if (this.forms.password !== '') {
+        if (this.forms.password.length < 8) {
+          this.errors.password = 'Password must be at least 8 characters.';
+          return false;
+        }
+      }
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios({
+        method: 'put',
+        url: this.url + '/users/saveprofile',
+        params: {
+          username: this.forms.username,
+          password: this.forms.password,
+          fullname: this.forms.fullname
+        }
+      }).then(function (res) {
+        swal({
+          title: 'Success',
+          text: res.data.statusText,
+          icon: 'success',
+          timer: 3000
+        });
+        setTimeout(function () {
+          document.location = '';
+        }, 2000);
+      }).catch(function (err) {
+        if (err.response.status === 500) {
+          _this.errorMessage = err.response.statusText;
+        } else {
+          _this.errorMessage = err.response.data.statusText;
+        }
+        _this.forms.submit = 'Save';
+      });
+    },
+
+    getEventPicture: function getEventPicture(event) {
+      this.forms.picture = event.target.files[0];
+    },
+    getFormatFile: function getFormatFile(files) {
+      var length_str_file = files.length;
+      var getIndex = files.lastIndexOf(".");
+      var getformatfile = files.substring(length_str_file, getIndex + 1).toLowerCase();
+      return getformatfile;
+    },
+    saveProfilePicture: function saveProfilePicture() {
+      if (this.forms.picture === '') {
+        swal({
+          title: 'Warning',
+          text: 'Please insert a picture',
+          icon: 'warning',
+          dangerMode: true,
+          timer: 3000
+        });
+      } else {
+        var formatfile = this.getFormatFile(this.forms.picture.name);
+        if (formatfile === 'jpg' || formatfile === 'png' || formatfile === 'jpeg') {
+          var formdata = new FormData();
+          if (this.forms.picture.size > 2048000) {
+            swal({
+              title: 'Warning',
+              text: 'Image file too large',
+              icon: 'warning',
+              dangerMode: true,
+              timer: 3000
+            });
+          } else {
+            formdata.append('picture', this.forms.picture);
+            axios.post(this.url + '/users/savepicture', formdata).then(function (res) {
+              swal({
+                title: 'Success',
+                text: res.data.statusText,
+                icon: 'success',
+                timer: 3000
+              });
+              setTimeout(function () {
+                document.location = '';
+              }, 3000);
+            }).catch(function (err) {
+              swal({
+                title: 'Warning',
+                text: err.response.statusText,
+                icon: 'warning',
+                dangerMode: true,
+                timer: 3000
+              });
+            });
+          }
+        } else {
+          swal({
+            title: 'Warning',
+            text: 'Image file must be JPG / PNG',
+            icon: 'warning',
+            dangerMode: true,
+            timer: 3000
+          });
+        }
+      }
+    }
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "uk-card uk-card-body" }, [
+    _c("div", { staticClass: "uk-grid-medium", attrs: { "uk-grid": "" } }, [
+      _c("div", { staticClass: "uk-width-expand" }, [
+        _c("div", { staticClass: "uk-card-title" }, [_vm._v("Account")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "uk-form-stacked uk-margin-top",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.saveProfileInfo($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Username")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.forms.username,
+                      expression: "forms.username"
+                    }
+                  ],
+                  staticClass: "uk-input",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.forms.username },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.forms, "username", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.username
+                ? _c("div", {
+                    staticClass: "uk-text-small uk-text-danger",
+                    domProps: { innerHTML: _vm._s(_vm.errors.username) }
+                  })
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Fullname")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.forms.fullname,
+                      expression: "forms.fullname"
+                    }
+                  ],
+                  staticClass: "uk-input",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.forms.fullname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.forms, "fullname", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.fullname
+                ? _c("div", {
+                    staticClass: "uk-text-small uk-text-danger",
+                    domProps: { innerHTML: _vm._s(_vm.errors.fullname) }
+                  })
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("label", { staticClass: "uk-form-label" }, [
+                _vm._v("Password")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-form-controls" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.forms.password,
+                      expression: "forms.password"
+                    }
+                  ],
+                  staticClass: "uk-input",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.forms.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.forms, "password", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm.errors.password
+                ? _c("div", {
+                    staticClass: "uk-text-small uk-text-danger",
+                    domProps: { innerHTML: _vm._s(_vm.errors.password) }
+                  })
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin" }, [
+              _c("button", {
+                staticClass: "uk-button uk-button-primary",
+                domProps: { innerHTML: _vm._s(_vm.forms.submit) }
+              })
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "uk-width-1-2@xl uk-width-1-2@l uk-width-1-4@m uk-width-1-2@s"
+        },
+        [
+          _c("div", { staticClass: "uk-card-title" }, [
+            _vm._v("Profile Picture")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "uk-margin-top",
+              attrs: { "uk-form-custom": "target: true" }
+            },
+            [
+              _c("div", { staticClass: "uk-margin" }, [
+                _c("label", { staticClass: "uk-form-label" }, [
+                  _vm._v("Profile picture")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "uk-form-controls" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "uk-width-1-1",
+                      attrs: { "uk-form-custom": "target: true" }
+                    },
+                    [
+                      _c("input", {
+                        attrs: { type: "file" },
+                        on: { change: _vm.getEventPicture }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "uk-input uk-width-1-1",
+                        attrs: {
+                          type: "text",
+                          placeholder: "JPG/PNG",
+                          disabled: ""
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "uk-text-small uk-text-muted" },
+                        [_vm._v("Max: 2MB")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("button", {
+                    staticClass: "uk-button uk-button-primary uk-margin-top",
+                    domProps: { innerHTML: _vm._s(_vm.forms.submitPicture) },
+                    on: {
+                      click: function($event) {
+                        _vm.saveProfilePicture()
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b824f228", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

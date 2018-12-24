@@ -42,6 +42,10 @@ Route::group(['prefix' => '/users'], function() {
   Route::post('/add', 'Pages\UsersController@store');
   Route::put('/update/{id}', 'Pages\UsersController@update');
   Route::delete('/delete/{id}', 'Pages\UsersController@destroy');
+
+  Route::get('/profile', 'Pages\UsersController@userprofile')->name('userprofile_page');
+  Route::put('/saveprofile', 'Pages\UsersController@saveprofile');
+  Route::post('/savepicture', 'Pages\UsersController@savepicture');
 });
 // users management
 
