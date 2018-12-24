@@ -150,8 +150,12 @@
 }
 
 .mainnav .profile_info .canvas_picture {
-  width: 145px;
-  height: 133px;
+  width: 140px;
+  overflow: hidden;
+}
+
+.mainnav .profile_info .canvas_picture img {
+  height: 146px;
 }
 
 .mainnav .profile_info .profile_name {

@@ -25,8 +25,12 @@
             @if( empty( $users->profile_picture ) )
             <div class="uk-align-center uk-tile uk-tile-default uk-border-circle canvas_picture">
               <div class="uk-position-center">
-                145 x 133
+                140 x 146
               </div>
+            </div>
+            @else
+            <div class="uk-align-center uk-border-circle canvas_picture">
+              <img src="{{ asset('images/avatar/' . $users->profile_picture) }}" alt="">
             </div>
             @endif
             <div class="profile_name">

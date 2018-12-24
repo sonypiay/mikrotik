@@ -105,8 +105,9 @@
     @include fontstyle( 600, normal, normal, 0.4px );
     color: #666666;
     .canvas_picture {
-      width: 145px;
-      height: 133px;
+      width: 140px;
+      img { height: 146px; }
+      overflow: hidden;
     }
     .profile_name {
       font-size: 18px;
