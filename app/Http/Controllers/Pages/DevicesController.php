@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pages;
 
 use Illuminate\Http\Request;
+use App\Database\Users;
 use App\Database\RegionDomain;
 use App\Database\Devices;
 use App\Database\UserMikrotik;
@@ -11,16 +12,19 @@ use App\Http\Controllers\Controller;
 
 class DevicesController extends Controller
 {
-  public function index( Request $request, RegionDomain $region, UserMikrotik $usermikrotik )
+  public function index( Request $request, RegionDomain $region, Users $users )
   {
     if( $request->session()->has('hasLogin') )
     {
       $region = new $region;
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+
       return response()->view('pages.devices', [
         'request' => $request,
-        'getSession' => $request->session(),
-        'region' => $region->orderBy('region_domain_name', 'asc')->get(),
-        'usermikrotik' => $usermikrotik->orderBy('username_mikrotik', 'asc')->get()
+        'getSession' => $session,
+        'users' => $users,
+        'region' => $region->orderBy('region_domain_name', 'asc')->get()
       ]);
     }
     else
@@ -29,7 +33,7 @@ class DevicesController extends Controller
     }
   }
 
-  public function detaildevice( Request $request, Devices $device, $id )
+  public function detaildevice( Request $request, Devices $device, Users $users, $id )
   {
     if( $request->session()->has('hasLogin') )
     {
@@ -38,9 +42,12 @@ class DevicesController extends Controller
       ->where('devices.device_id', $id)->first();
       if( $device->count() == 0 ) abort(404);
 
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+
       return response()->view('pages.detaildevice', [
         'request' => $request,
-        'getSession' => $request->session(),
+        'getSession' => $request->session()->all(),
         'device' => $device
       ]);
     }
@@ -228,14 +235,18 @@ class DevicesController extends Controller
     return response()->json($res, $res['status']);
   }
 
-  public function location( Request $request, RegionDomain $domain, $zone )
+  public function location( Request $request, RegionDomain $domain, Users $users, $zone )
   {
     $getdomain = $domain->where('region_domain_id', $zone)->first();
     if( $request->session()->has('hasLogin') )
     {
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+
       return response()->view('pages.location', [
         'request' => $request,
-        'getSession' => $request->session(),
+        'getSession' => $session,
+        'users' => $users,
         'domain' => $getdomain
       ]);
     }
@@ -289,16 +300,20 @@ class DevicesController extends Controller
     return response()->json( $data );
   }
 
-  public function controllerdevice( Request $request, Devices $devices, $id )
+  public function controllerdevice( Request $request, Devices $devices, Users $users, $id )
   {
     if( $request->session()->has('hasLogin') )
     {
       $device = $devices->where('devices.device_id', $id)->first();
       if( $device->count() == 0 ) abort(404);
 
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+
       return response()->view('pages.controller', [
         'request' => $request,
-        'getSession' => $request->session(),
+        'getSession' => $session,
+        'users' => $users,
         'device' => $device
       ]);
     }

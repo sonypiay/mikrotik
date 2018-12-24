@@ -16,9 +16,13 @@ class DashboardController extends Controller
   {
     if( $request->session()->has('hasLogin') )
     {
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+      
       return response()->view('pages.dashboard', [
         'request' => $request,
-        'getSession' => $request->session()
+        'getSession' => $session,
+        'users' => $users
       ]);
     }
     else

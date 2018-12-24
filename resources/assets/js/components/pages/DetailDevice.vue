@@ -9,13 +9,13 @@
   </div>
 
   <div v-if="component === 'deviceinfo'">
-    <deviceinfo :url="url" :device="device" />
+    <deviceinfo :url="url" :device="device" :session="session" />
   </div>
   <div v-else-if="component === 'log'">
-    <logview :url="url" :device="device" />
+    <logview :url="url" :device="device" :session="session" />
   </div>
   <div v-else>
-    <graphtool :url="url" :device="device" />
+    <graphtool :url="url" :device="device" :session="session" />
   </div>
 </div>
 </template>
@@ -26,7 +26,7 @@ import deviceinfo from '../api/DeviceInfo.vue';
 import graphtool from '../api/Graph.vue';
 
 export default {
-  props: ['url', 'device'],
+  props: ['url', 'device', 'session'],
   components: {
     logview,
     deviceinfo,

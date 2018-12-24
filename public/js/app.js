@@ -52039,7 +52039,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url', 'device'],
+  props: ['url', 'device', 'session'],
   components: {
     logview: __WEBPACK_IMPORTED_MODULE_0__api_Log_vue___default.a,
     deviceinfo: __WEBPACK_IMPORTED_MODULE_1__api_DeviceInfo_vue___default.a,
@@ -53030,18 +53030,38 @@ var render = function() {
     _vm.component === "deviceinfo"
       ? _c(
           "div",
-          [_c("deviceinfo", { attrs: { url: _vm.url, device: _vm.device } })],
+          [
+            _c("deviceinfo", {
+              attrs: { url: _vm.url, device: _vm.device, session: _vm.session }
+            })
+          ],
           1
         )
       : _vm.component === "log"
         ? _c(
             "div",
-            [_c("logview", { attrs: { url: _vm.url, device: _vm.device } })],
+            [
+              _c("logview", {
+                attrs: {
+                  url: _vm.url,
+                  device: _vm.device,
+                  session: _vm.session
+                }
+              })
+            ],
             1
           )
         : _c(
             "div",
-            [_c("graphtool", { attrs: { url: _vm.url, device: _vm.device } })],
+            [
+              _c("graphtool", {
+                attrs: {
+                  url: _vm.url,
+                  device: _vm.device,
+                  session: _vm.session
+                }
+              })
+            ],
             1
           )
   ])
@@ -53477,7 +53497,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url', 'domain'],
+  props: ['url', 'domain', 'session'],
   data: function data() {
     return {
       keywords: '',
@@ -53709,15 +53729,20 @@ var render = function() {
                       [_c("span", { attrs: { "uk-icon": "info" } })]
                     ),
                     _vm._v(" "),
-                    _c("a", {
-                      staticClass: "uk-button uk-button-text",
-                      attrs: {
-                        href:
-                          _vm.url + "/devices/controller/" + device.device_id,
-                        "uk-icon": "cog",
-                        "uk-tooltip": "Controller"
-                      }
-                    })
+                    _vm.session.privilege === "full" ||
+                    _vm.session.privilege === "write"
+                      ? _c("a", {
+                          staticClass: "uk-button uk-button-text",
+                          attrs: {
+                            href:
+                              _vm.url +
+                              "/devices/controller/" +
+                              device.device_id,
+                            "uk-icon": "cog",
+                            "uk-tooltip": "Controller"
+                          }
+                        })
+                      : _vm._e()
                   ])
                 ])
               })

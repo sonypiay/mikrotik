@@ -139,6 +139,51 @@
   color: #ffffff;
 }
 
+.mainnav .profile_info {
+  font-size: 13px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+  color: #666666;
+}
+
+.mainnav .profile_info .canvas_picture {
+  width: 145px;
+  height: 133px;
+}
+
+.mainnav .profile_info .profile_name {
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
+
+.mainnav .profile_info .profile_name a {
+  color: #aaaaaa;
+  text-decoration: none;
+}
+
+.mainnav .profile_info .profile_name a:hover {
+  color: #dddddd;
+}
+
+.mainnav .profile_info .profile_privilege {
+  font-size: 14px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: #aaaaaa;
+}
+
 .card {
   border-radius: 4px;
 }

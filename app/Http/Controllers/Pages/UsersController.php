@@ -15,9 +15,13 @@ class UsersController extends Controller
   {
     if( $request->session()->has('hasLogin') )
     {
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+
       return response()->view('pages.users', [
         'request' => $request,
-        'getSession' => $request->session()
+        'getSession' => $session,
+        'users' => $users
       ]);
     }
     else

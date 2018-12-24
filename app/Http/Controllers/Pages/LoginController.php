@@ -19,7 +19,7 @@ class LoginController extends Controller
     {
       return response()->view('login', [
         'request' => $request,
-        'getSession' => $request->session()
+        'getSession' => $request->session()->all()
       ]);
     }
   }

@@ -4,17 +4,22 @@ namespace App\Http\Controllers\Pages;
 
 use Illuminate\Http\Request;
 use App\Database\Region;
+use App\Database\Users;
 use App\Http\Controllers\Controller;
 
 class RegionController extends Controller
 {
-  public function index( Request $request )
+  public function index( Request $request, Users $users )
   {
     if( $request->session()->has('hasLogin') )
     {
+      $session = $request->session()->get('hasLogin');
+      $users = $users->where( 'user_id', $session['userid'] )->first();
+
       return response()->view('pages.zoneregion', [
         'request' => $request,
-        'getSession' => $request->session()
+        'getSession' => $session,
+        'users' => $users
       ]);
     }
     else

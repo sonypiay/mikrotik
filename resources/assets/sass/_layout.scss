@@ -99,6 +99,36 @@
       }
     }
   }
+  .profile_info {
+    font-size: 13px;
+    font-family: $font-primary;
+    @include fontstyle( 600, normal, normal, 0.4px );
+    color: #666666;
+    .canvas_picture {
+      width: 145px;
+      height: 133px;
+    }
+    .profile_name {
+      font-size: 18px;
+      font-family: $font-primary;
+      @include fontstyle( 600, normal, normal, 0.4px );
+      text-align: center;
+      a {
+        color: #aaaaaa;
+        text-decoration: none;
+        &:hover {
+          color: #dddddd;
+        }
+      }
+    }
+    .profile_privilege {
+      font-size: 14px;
+      font-family: $font-primary;
+      @include fontstyle( 400, normal, normal, 0.4px );
+      text-align: center;
+      color: #aaaaaa;
+    }
+  }
 }
 
 .card {

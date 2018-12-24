@@ -21,6 +21,27 @@
           </div>
         </section>
         <section class="uk-card uk-card-body uk-card-small">
+          <div class="uk-margin-top uk-margin-bottom profile_info">
+            @if( empty( $users->profile_picture ) )
+            <div class="uk-align-center uk-tile uk-tile-default uk-border-circle canvas_picture">
+              <div class="uk-position-center">
+                145 x 133
+              </div>
+            </div>
+            @endif
+            <div class="profile_name">
+              <a href="#">{{ $users->fullname }}</a>
+            </div>
+            <div class="profile_privilege">
+              @if( $users->privilege === 'full' )
+                Super Administrator
+              @elseif( $users->privilege === 'write' )
+              Administrator
+              @else
+                User
+              @endif
+            </div>
+          </div>
           @include('includes.navleft')
         </section>
       </nav>
