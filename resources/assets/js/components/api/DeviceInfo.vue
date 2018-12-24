@@ -1,7 +1,7 @@
 <template lang="html">
 <div>
+  <a class="uk-margin-bottom uk-button uk-button-text uk-button-small" :href="url + '/location/' + device.region_domain_id"><span uk-icon="chevron-left"></span> Back</a>
   <div v-if="errors.error" class="uk-margin-bottom uk-margin-top uk-alert-danger" uk-alert>{{ errors.error }}</div>
-  <!--<button class="uk-margin-bottom uk-button uk-button-primary" @click="devicesInfo()"><span uk-icon="refresh"></span></button>-->
   <div class="uk-grid-small" uk-grid>
     <div class="uk-width-1-1">
       <div class="uk-card uk-card-body uk-card-small uk-card-default box_deviceinfo">
@@ -21,6 +21,12 @@
         <div class="device_value">{{ device.device_name }}</div>
       </div>
     </div>
+    <!--<div class="uk-width-1-1">
+      <div class="uk-card uk-card-body uk-card-small uk-card-default box_deviceinfo">
+        <div class="device_heading">Description</div>
+        <div class="uk-text-small uk-text-muted" v-html="device.device_description"></div>
+      </div>
+    </div>-->
     <div class="uk-width-1-3@xl uk-width-1-3@l uk-width-1-2@m uk-width-1-2@s">
       <div class="uk-card uk-card-body uk-card-small uk-card-default box_deviceinfo">
         <div class="device_heading">Mikrotik</div>

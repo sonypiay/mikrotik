@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+    <a class="uk-margin-bottom uk-button uk-button-text uk-button-small" :href="url + '/location/' + device.region_domain_id"><span uk-icon="chevron-left"></span> Back</a>
     <h3>Log - {{ device.device_name }}</h3>
     <div class="uk-overflow-auto uk-margin-top uk-height-medium">
       <table class="uk-table uk-table-hover uk-table-striped uk-table-middle uk-table-divider uk-table-small">

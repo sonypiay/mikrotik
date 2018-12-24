@@ -33,6 +33,7 @@
       </div>
     </div>
 
+    <a class="uk-margin-bottom uk-button uk-button-text uk-button-small" :href="url + '/location/' + device.region_domain_id"><span uk-icon="chevron-left"></span> Back</a>
     <h3>Walled Garden - {{ device.device_name }}</h3>
     <a @click="showModal()" class="uk-button uk-button-default">Add Walled Garden</a>
     <div class="uk-overflow-auto uk-margin-top">

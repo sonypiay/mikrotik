@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+    <a class="uk-margin-bottom uk-button uk-button-text uk-button-small" :href="url + '/location/' + device.region_domain_id"><span uk-icon="chevron-left"></span> Back</a>
     <h3>Hotspot Address - {{ device.device_name }}</h3>
     <form class="uk-form-stacked" @submit.prevent="updateRadiusIp">
       <div class="uk-margin">

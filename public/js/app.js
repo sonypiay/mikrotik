@@ -52133,6 +52133,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -52171,6 +52172,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
+    _vm._v(" "),
     _c("h3", [_vm._v("Log - " + _vm._s(_vm.device.device_name))]),
     _vm._v(" "),
     _c(
@@ -52347,6 +52358,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -52405,6 +52422,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
+    _vm._v(" "),
     _vm.errors.error
       ? _c(
           "div",
@@ -52742,50 +52769,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -52812,164 +52795,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    addGraphModal: function addGraphModal(graph) {
-      if (graph === undefined) {
-        this.forms.iface = '';
-        this.forms.allow_address = '0.0.0.0/0';
-        this.forms.storeondisk = 'yes';
-        this.forms.submit = 'Add';
-        this.forms.edit = false;
-      } else {
-        var isStoreOnDisk = 'Y';
-        if (graph['store-on-disk']) {
-          isStoreOnDisk = 'yes';
-        } else {
-          isStoreOnDisk = 'no';
-        }
-
-        this.forms.iface = graph.interface, this.forms.allow_address = graph['allow-address'], this.forms.storeondisk = isStoreOnDisk, this.forms.submit = 'Save', this.forms.edit = true;
-      }
-
-      this.forms.error = false;
-      this.errors = {};
-      this.errorMessage = '';
-      UIkit.modal('#modal').show();
-    },
-    getInterface: function getInterface() {
-      var _this = this;
-
-      axios({
-        method: 'get',
-        url: this.url + '/api/mikrotik/interface/' + this.device.device_id
-      }).then(function (res) {
-        var result = res.data;
-        _this.interfaces = result.result;
-      }).catch(function (err) {
-        console.log(err.response.status);
-      });
-    },
     getGraphInterface: function getGraphInterface() {
-      var _this2 = this;
+      var _this = this;
 
       axios({
         method: 'get',
         url: this.url + '/api/mikrotik/graph/' + this.device.device_id
       }).then(function (res) {
         var result = res.data;
-        _this2.graphing = result.result;
+        _this.graphing = result.result;
       }).catch(function (err) {
         console.log(err.response.status);
       });
     },
     getServices: function getServices() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios({
         method: 'get',
         url: this.url + '/api/mikrotik/find/service/' + this.device.device_id + '?name=name&value=www'
       }).then(function (res) {
         var result = res.data;
-        _this3.services = result.result[0];
-        console.log(_this3.services);
+        _this2.services = result.result[0];
+        console.log(_this2.services);
       }).catch(function (err) {
         console.log(err.response.status);
-      });
-    },
-    addGraph: function addGraph() {
-      var _this4 = this;
-
-      this.errors = {};
-      this.errorMessage = '';
-      if (this.forms.iface === '') {
-        this.forms.error = true;
-        this.errors.iface = 'Please select interface';
-      }
-
-      if (this.forms.error === true) {
-        this.forms.error = false;
-        return false;
-      }
-
-      if (this.forms.allow_address === '') {
-        this.forms.allow_address = '0.0.0.0/0';
-      }
-
-      this.forms.submit = '<span uk-spinner></span>';
-      axios({
-        method: 'post',
-        url: this.url + '/api/mikrotik/add/graph/' + this.device.device_id,
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        params: {
-          iface: this.forms.iface,
-          allow_address: this.forms.allow_address,
-          storeondisk: this.forms.storeondisk
-        }
-      }).then(function (res) {
-        var result = res.data;
-        swal({
-          title: 'Success',
-          text: result.response,
-          icon: 'success',
-          timer: 3000
-        });
-        _this4.getGraphInterface();
-        setTimeout(function () {
-          UIkit.modal('#modal').hide();
-        }, 2000);
-      }).catch(function (err) {
-        if (err.response.status === 500) {
-          _this4.errorMessage = err.response.statusText;
-        } else {
-          _this4.errorMessage = err.response.data.response;
-        }
-        _this4.forms.submit = 'Add';
-      });
-    },
-    deleteGraph: function deleteGraph(id, iface) {
-      var _this5 = this;
-
-      swal({
-        title: 'Confirm Delete',
-        text: 'Are you sure want delete ' + iface + '?',
-        icon: 'warning',
-        dangerMode: true,
-        buttons: {
-          cancel: 'Cancel',
-          confirm: {
-            text: 'Delete',
-            value: true
-          }
-        }
-      }).then(function (val) {
-        if (val) {
-          axios({
-            method: 'delete',
-            url: _this5.url + '/api/mikrotik/delete/graph/' + _this5.device.device_id + '?id=' + id + '&iface=' + iface
-          }).then(function (res) {
-            var result = res.data;
-            swal({
-              title: 'Success',
-              text: result.response,
-              icon: 'success',
-              timer: 3000
-            });
-            _this5.getGraphInterface();
-          }).catch(function (err) {
-            if (err.response.status === 500) {
-              _this5.errorMessage = err.response.statusText;
-            } else {
-              _this5.errorMessage = err.response.data.response;
-            }
-            _this5.forms.submit = 'Add';
-          });
-        }
       });
     }
   },
   mounted: function mounted() {
-    this.getInterface();
     this.getGraphInterface();
     this.getServices();
   }
@@ -52984,206 +52838,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { attrs: { id: "modal", "uk-modal": "" } }, [
-      _c("div", { staticClass: "uk-modal-dialog uk-modal-body" }, [
-        _c("h3", [
-          _vm.forms.edit
-            ? _c("span", [_vm._v("Update Graph")])
-            : _c("span", [_vm._v("Add New")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            staticClass: "uk-form-stacked",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.addGraph($event)
-              }
-            }
-          },
-          [
-            _vm.errorMessage
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "uk-text-small uk-alert-danger",
-                    attrs: { "uk-alert": "" }
-                  },
-                  [_vm._v(_vm._s(_vm.errorMessage))]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin" }, [
-              _c("label", { staticClass: "uk-form-label" }, [
-                _vm._v("Interface")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-form-controls" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.forms.iface,
-                        expression: "forms.iface"
-                      }
-                    ],
-                    staticClass: "uk-width-1-1 uk-select",
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.forms,
-                          "iface",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("-- Interface --")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.interfaces, function(iface) {
-                      return _c("option", { domProps: { value: iface.name } }, [
-                        _vm._v(_vm._s(iface.name))
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ]),
-              _vm._v(" "),
-              _vm.errors.iface
-                ? _c("div", { staticClass: "uk-text-small uk-text-danger" }, [
-                    _vm._v(_vm._s(_vm.errors.iface))
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin" }, [
-              _c("label", { staticClass: "uk-form-label" }, [
-                _vm._v("Allow Address")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-form-controls" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.forms.allow_address,
-                      expression: "forms.allow_address"
-                    }
-                  ],
-                  staticClass: "uk-input",
-                  attrs: { type: "text", value: "0.0.0.0/0" },
-                  domProps: { value: _vm.forms.allow_address },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.forms, "allow_address", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin" }, [
-              _c("label", { staticClass: "uk-form-label" }, [
-                _vm._v("Store on Disk")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-form-controls" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.forms.storeondisk,
-                        expression: "forms.storeondisk"
-                      }
-                    ],
-                    staticClass: "uk-select",
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.forms,
-                          "storeondisk",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "yes" } }, [_vm._v("Yes")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "no" } }, [_vm._v("No")])
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin" }, [
-              _c("button", {
-                staticClass: "uk-button uk-button-primary",
-                domProps: { innerHTML: _vm._s(_vm.forms.submit) }
-              }),
-              _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "uk-button uk-button-default uk-modal-close" },
-                [_vm._v("Cancel")]
-              )
-            ])
-          ]
-        )
-      ])
-    ]),
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
     _vm._v(" "),
-    _c("h3", [
-      _vm._v("Graph - " + _vm._s(_vm.device.device_name) + " "),
-      _c(
-        "a",
-        {
-          staticClass: "uk-button uk-button-default",
-          on: {
-            click: function($event) {
-              _vm.addGraphModal()
-            }
-          }
-        },
-        [_vm._v("Add")]
-      )
-    ]),
+    _c("h3", [_vm._v("Graph - " + _vm._s(_vm.device.device_name))]),
     _vm._v(" "),
     _c("div", { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } }, [
       _c(
@@ -53249,7 +52914,13 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "uk-card uk-card-default" }, [
-              _c("div", { staticClass: "uk-card-media-top" }, [
+              _c("div", { staticClass: "uk-card-body uk-card-small" }, [
+                _c("div", { staticClass: "uk-card-title" }, [
+                  _vm._v(_vm._s(graph.interface))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-card-media-bottom" }, [
                 _c("div", { staticClass: "uk-cover-container" }, [
                   _vm.services.port === 80
                     ? _c("iframe", {
@@ -53282,28 +52953,6 @@ var render = function() {
                             ".gif"
                         }
                       })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-card-body uk-card-small" }, [
-                _c("div", { staticClass: "uk-card-title" }, [
-                  _vm._v(_vm._s(graph.interface))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "uk-text-center" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "uk-button uk-button-text uk-margin-top",
-                      attrs: { "uk-tooltip": "Delete" },
-                      on: {
-                        click: function($event) {
-                          _vm.deleteGraph(graph[".id"], graph.interface)
-                        }
-                      }
-                    },
-                    [_c("span", { attrs: { "uk-icon": "trash" } })]
-                  )
                 ])
               ])
             ])
@@ -54354,6 +54003,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -54429,6 +54079,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
+    _vm._v(" "),
     _c("h3", [_vm._v("Location ID - " + _vm._s(_vm.device.device_name))]),
     _vm._v(" "),
     _c(
@@ -54554,6 +54214,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -54629,6 +54290,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
+    _vm._v(" "),
     _c("h3", [_vm._v("Hotspot Address - " + _vm._s(_vm.device.device_name))]),
     _vm._v(" "),
     _c(
@@ -54740,6 +54411,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -55062,6 +54734,16 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
+    _vm._v(" "),
     _c("h3", [_vm._v("Walled Garden - " + _vm._s(_vm.device.device_name))]),
     _vm._v(" "),
     _c(
@@ -55235,6 +54917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -55319,6 +55002,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
+    _vm._v(" "),
     _c("h3", [_vm._v("Session Timeout - " + _vm._s(_vm.device.device_name))]),
     _vm._v(" "),
     _c(
@@ -55499,6 +55192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -55591,6 +55285,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass:
+          "uk-margin-bottom uk-button uk-button-text uk-button-small",
+        attrs: { href: _vm.url + "/location/" + _vm.device.region_domain_id }
+      },
+      [_c("span", { attrs: { "uk-icon": "chevron-left" } }), _vm._v(" Back")]
+    ),
+    _vm._v(" "),
     _c("h3", [_vm._v("Bandwidth Limit - " + _vm._s(_vm.device.device_name))]),
     _vm._v(" "),
     _c(
