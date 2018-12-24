@@ -1,21 +1,23 @@
 <template lang="html">
   <div>
-    <h3>Bandwidth</h3>
+    <h3>Bandwidth Limit - {{ device.device_name }}</h3>
     <form class="uk-form-stacked" @submit.prevent="updateBandwidth">
       <div class="uk-margin">
         <label class="uk-form-label">Upload</label>
         <div class="uk-form-controls">
           <input type="text" class="uk-width-medium uk-input" v-model="forms.upload">
         </div>
+        <span class="uk-text-small uk-text-muted">Upload: {{ formatSize( forms.upload ) }}</span>
       </div>
       <div class="uk-margin">
         <label class="uk-form-label">Download</label>
         <div class="uk-form-controls">
           <input type="text" class="uk-width-medium uk-input" v-model="forms.download">
         </div>
+        <span class="uk-text-small uk-text-muted">Download: {{ formatSize( forms.download ) }}</span>
       </div>
       <div class="uk-margin">
-        <button v-html="forms.submit" class="uk-button uk-button-default"></button>
+        <button v-html="forms.submit" class="uk-button uk-button-primary"></button>
       </div>
     </form>
   </div>
@@ -54,17 +56,15 @@ export default {
       });
     },
     formatSize(size) {
-      var sizes = ['B', 'K', 'M', 'G', 'T'];
-      var result;
-      if( isNaN(size) ) {
-        result = 'NaN';
-      }
-      else {
-        if (size == 0) return '0 Byte';
-        var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
-        result = Math.round(size / Math.pow(1024, i), 2) + sizes[i];
-      }
-      return result;
+      var num = numeral(size).format('0 b');
+      return num;
+      /*var i = -1;
+      var byteUnits = [' kbps', ' Mbps', ' Gbps', ' Tbps', 'Pbps', 'Ebps', 'Zbps', 'Ybps'];
+      do {
+        size = size / 1024;
+        i++;
+      } while (size > 1024);
+      return Math.max(size, 0.1).toFixed(1) + byteUnits[i];*/
     },
     updateBandwidth()
     {

@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <h3>Walled Garden</h3>
+    <h3>Walled Garden - {{ device.device_name }}</h3>
     <a @click="showModal()" class="uk-button uk-button-default">Add Walled Garden</a>
     <div class="uk-overflow-auto uk-margin-top">
       <table class="uk-table uk-table-middle uk-table-hover uk-table-striped uk-table-small uk-table-condensed">

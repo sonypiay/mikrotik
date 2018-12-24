@@ -1,12 +1,21 @@
 <template lang="html">
   <div>
-    <h3>Session Timeout</h3>
+    <h3>Session Timeout - {{ device.device_name }}</h3>
     <form class="uk-form-stacked" @submit.prevent="updateSessionTimeout">
       <div class="uk-margin">
-        <input type="text" class="uk-width-medium uk-input" v-model="forms.session" uk-tooltip title="format: 0h0m0s|00:00:00">
+        <label class="uk-form-label">Session Timeout</label>
+        <div class="uk-form-controls">
+          <input type="text" class="uk-width-medium uk-input" v-model="forms.session" uk-tooltip title="format: 0h0m0s|00:00:00">
+        </div>
       </div>
       <div class="uk-margin">
-        <button v-html="forms.submit" class="uk-button uk-button-default"></button>
+        <label class="uk-form-label">Keepalive Timeout</label>
+        <div class="uk-form-controls">
+          <input type="text" class="uk-width-medium uk-input" v-model="forms.keepalive" uk-tooltip title="format: 0h0m0s|00:00:00">
+        </div>
+      </div>
+      <div class="uk-margin">
+        <button v-html="forms.submit" class="uk-button uk-button-primary"></button>
       </div>
     </form>
   </div>
@@ -20,6 +29,7 @@ export default {
       forms: {
         id: '',
         session: 0,
+        keepalive: 0,
         submit: 'Edit'
       }
     }
@@ -34,7 +44,7 @@ export default {
         let result = res.data;
         this.forms.id = result.result[0]['.id'];
         this.forms.session = result.result[0]['session-timeout'];
-        console.log( result );
+        this.forms.keepalive = result.result[0]['keepalive-timeout'];
       }).catch( err => {
         console.log( err.response.statusText );
       });
@@ -47,7 +57,8 @@ export default {
         url: this.url + '/api/mikrotik/update/sessiontimeout/' + this.device.device_id,
         params: {
           id: this.forms.id,
-          sessiontimeout: this.forms.session
+          sessiontimeout: this.forms.session,
+          keepalivetimeout: this.forms.keepalive
         }
       }).then( res => {
         swal({

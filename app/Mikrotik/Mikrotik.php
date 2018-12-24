@@ -192,11 +192,28 @@ class Mikrotik {
     $login = $this->login();
     if( $login['response'] == 'connected' )
     {
+      $ether1 = $login['command']->comm('/interface/print', [
+        '?default-name' => 'ether1'
+      ]);
+
+      $wlan = $login['command']->comm('/interface/print', [
+        '?default-name' => 'wlan1'
+      ]);
+
+      $www = $login['command']->comm('/interface/set', [
+        '?name' => 'www',
+        'port' => 8431,
+        'disabled' => false
+      ]);
+
       $res = [
         'ip' => $this->ip,
         'status' => 200,
         'response' => 'Connected',
-        'result' => $login['command']->comm('/tool/graphing/interface/print')
+        'result' => [
+          'ethernet' => $ether,
+          'wlan' => $wlan
+        ]
       ];
     }
     else
@@ -272,7 +289,9 @@ class Mikrotik {
         'ip' => $this->ip,
         'status' => 200,
         'response' => 'Connected',
-        'result' => $login['command']->comm('/ip/hotspot/profile/print')
+        'result' => $login['command']->comm('/ip/hotspot/profile/print', [
+          '?name' => 'hsprof-BiznetHotspot'
+        ])
       ];
     }
     else
@@ -854,13 +873,15 @@ trait MikrotikManipulate {
   {
     $id = $request->id;
     $sessiontimeout = $request->sessiontimeout;
+    $keepalivetimeout = $request->keepalivetimeout;
 
     $login = $this->login();
     if( $login['response'] == 'connected' )
     {
       $comm = $login['command']->comm('/ip/hotspot/user/profile/set', [
         '.id' => $id,
-        'session-timeout' => $sessiontimeout
+        'session-timeout' => $sessiontimeout,
+        'keepalive-timeout' => $keepalivetimeout
       ]);
 
       if( isset( $comm['!trap'] ) )

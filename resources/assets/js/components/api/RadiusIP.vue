@@ -1,12 +1,12 @@
 <template lang="html">
   <div>
-    <h3>Radius IP</h3>
+    <h3>Hotspot Address - {{ device.device_name }}</h3>
     <form class="uk-form-stacked" @submit.prevent="updateRadiusIp">
       <div class="uk-margin">
         <input type="text" class="uk-width-medium uk-input" v-model="forms.radiusip">
       </div>
       <div class="uk-margin">
-        <button v-html="forms.submit" class="uk-button uk-button-default"></button>
+        <button v-html="forms.submit" class="uk-button uk-button-primary"></button>
       </div>
     </form>
   </div>
@@ -33,7 +33,7 @@ export default {
         url: this.url + '/api/mikrotik/locationid/' + this.device.device_id
       }).then( res => {
         let result = res.data;
-        this.locationid = result.result[1];
+        this.locationid = result.result[0];
         this.forms.id = this.locationid['.id'];
         this.forms.radiusip = this.locationid['hotspot-address'];
       }).catch( err => {

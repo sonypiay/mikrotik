@@ -95,7 +95,7 @@
       </div>
       <div class="uk-width-1-4@xl uk-width-1-4@l uk-width-1-3@m uk-width-1-1@s">
         <select class="uk-select" v-model="selectedZone" @change="listDevices( pagination.path + '?page=' + pagination.current )">
-          <option value="all" selected>All Zone</option>
+          <option value="all" selected>All Domain</option>
           <option v-for="reg in region" :value="reg.region_domain_id">{{ reg.region_domain_name }}</option>
         </select>
       </div>
@@ -110,7 +110,6 @@
             <th>#</th>
             <th>Name</th>
             <th>Zone</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -121,10 +120,6 @@
             </td>
             <td>{{ device.device_name }}</td>
             <td>{{ device.region_domain_name }}</td>
-            <td>
-              <a class="uk-button uk-button-text" :href="url + '/devices/monitor/' + device.device_id" uk-tooltip="Monitor"><span uk-icon="info"></span></a>
-              <a class="uk-button uk-button-text" :href="url + '/devices/controller/' + device.device_id" uk-icon="cog" uk-tooltip="Controller"></a>
-            </td>
             <!--<td>
               <div v-for="status in devices.statusdevice">
                 <span v-if="status.ip === device.device_ip">

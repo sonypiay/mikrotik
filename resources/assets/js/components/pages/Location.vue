@@ -10,7 +10,7 @@
   </header>
 
   <div class="uk-card uk-card-body">
-    <h3>Devices</h3>
+    <h3>{{ domain.region_domain_name }}</h3>
     <div class="uk-margin">
       <select class="uk-width-1-4 uk-select" v-model="selectedRows" @change="listDevices( pagination.path + '?page=' + pagination.current )">
         <option value="10">10 rows</option>

@@ -3,9 +3,9 @@
     <div class="uk-margin-top">
       <ul class="uk-flex-center" uk-tab>
         <li><a @click="viewPage('locationid')">Location ID</a></li>
-        <li><a @click="viewPage('radiusip')">Radius IP</a></li>
+        <li><a @click="viewPage('radiusip')">Hotspot Address</a></li>
         <li><a @click="viewPage('walledgarden')">Walled Garden</a></li>
-        <li><a @click="viewPage('bandwidth')">Bandwidth</a></li>
+        <li><a @click="viewPage('bandwidth')">Bandwidth Limit</a></li>
         <li><a @click="viewPage('sessiontimeout')">Session Timeout</a></li>
       </ul>
     </div>

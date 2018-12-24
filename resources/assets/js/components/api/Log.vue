@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <h3>Log</h3>
+    <h3>Log - {{ device.device_name }}</h3>
     <div class="uk-overflow-auto uk-margin-top uk-height-medium">
       <table class="uk-table uk-table-hover uk-table-striped uk-table-middle uk-table-divider uk-table-small">
         <thead>

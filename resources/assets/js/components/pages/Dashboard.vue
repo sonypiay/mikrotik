@@ -13,7 +13,7 @@
           <table class="uk-table uk-table-middle uk-table-hover uk-table-striped uk-table-small uk-table-condensed">
             <thead>
               <tr>
-                <th>Location</th>
+                <th>Region</th>
                 <th>Up</th>
                 <th>Down</th>
                 <th>Access Point</th>
