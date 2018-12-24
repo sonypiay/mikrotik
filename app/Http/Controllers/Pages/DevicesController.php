@@ -47,7 +47,8 @@ class DevicesController extends Controller
 
       return response()->view('pages.detaildevice', [
         'request' => $request,
-        'getSession' => $request->session()->all(),
+        'getSession' => $session,
+        'users' => $users,
         'device' => $device
       ]);
     }
