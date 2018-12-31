@@ -33,7 +33,6 @@
               <select class="uk-select" v-model="forms.privilege">
                 <option value="full">Full</option>
                 <option value="write">Write</option>
-                <option value="read">Read</option>
               </select>
             </div>
           </div>
@@ -49,7 +48,7 @@
     </div>
   </div>
   <!-- modal -->
-  
+
   <header class="uk-navbar uk-box-shadow-small navbarsearch">
     <div class="uk-width-1-1 uk-navbar-item">
       <div class="uk-width-1-1 uk-inline">
