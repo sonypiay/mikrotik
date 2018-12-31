@@ -45,7 +45,7 @@ class UsersController extends Controller
     {
       $query = $query->where('fullname', 'like', '%' . $searchuser . '%')
       ->orWhere('username', 'like', '%' .  $searchuser . '%')
-      ->orderBy('user_id', 'desc')
+      ->orderBy('created_at', 'asc')
       ->paginate( $limit );
     }
     return response()->json( $query, 200 );
@@ -58,6 +58,14 @@ class UsersController extends Controller
     $password = $request->password;
     $privilege = $request->privilege;
     $users = new $users;
+    $getuid = $users->orderBy('user_id', 'desc')->first();
+    $replace = preg_replace('/^U/i', '', $getuid->user_id);
+    if( preg_match('/^0/i', $replace) )
+    {
+      $replace = preg_replace('/^0+0/i', '', $replace);
+    }
+
+    $uid = str_pad( $replace + 1, 4, '0', STR_PAD_LEFT );
     if( $users->where('username','=',$username)->count() === 1 )
     {
       $res = [
@@ -67,6 +75,7 @@ class UsersController extends Controller
     }
     else
     {
+      $users->user_id = $uid;
       $users->fullname = $fullname;
       $users->username = $username;
       $users->password = Hash::make( $password );
@@ -233,7 +242,7 @@ class UsersController extends Controller
       }
       $storage->putFileAs('avatar', $picture, $getfilename);
     }
-    
+
     $users->profile_picture = $getfilename;
     $users->save();
 
