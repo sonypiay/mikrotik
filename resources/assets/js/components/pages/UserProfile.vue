@@ -1,52 +1,42 @@
 <template lang="html">
   <div class="uk-card uk-card-body">
-    <div class="uk-grid-medium" uk-grid>
-      <div class="uk-width-expand">
-        <div class="uk-card-title">Account</div>
-        <form class="uk-form-stacked uk-margin-top" @submit.prevent="saveProfileInfo">
-          <div class="uk-margin">
-            <label class="uk-form-label">Username</label>
-            <div class="uk-form-controls">
-              <input type="text" class="uk-input" v-model="forms.username">
-            </div>
-            <div v-if="errors.username" class="uk-text-small uk-text-danger" v-html="errors.username"></div>
-          </div>
-          <div class="uk-margin">
-            <label class="uk-form-label">Fullname</label>
-            <div class="uk-form-controls">
-              <input type="text" class="uk-input" v-model="forms.fullname">
-            </div>
-            <div v-if="errors.fullname" class="uk-text-small uk-text-danger" v-html="errors.fullname"></div>
-          </div>
-          <div class="uk-margin">
-            <label class="uk-form-label">Password</label>
-            <div class="uk-form-controls">
-              <input type="text" class="uk-input" v-model="forms.password">
-            </div>
-            <div v-if="errors.password" class="uk-text-small uk-text-danger" v-html="errors.password"></div>
-          </div>
-          <div class="uk-margin">
-            <button class="uk-button uk-button-primary" v-html="forms.submit"></button>
-          </div>
-        </form>
+    <div class="uk-card-title">Account</div>
+    <form class="uk-form-stacked uk-margin-top" @submit.prevent="saveProfileInfo">
+      <div class="uk-margin">
+        <label class="uk-form-label">Username</label>
+        <div class="uk-form-controls">
+          <input type="text" class="uk-input" v-model="forms.username">
+        </div>
+        <div v-if="errors.username" class="uk-text-small uk-text-danger" v-html="errors.username"></div>
       </div>
-      <div class="uk-width-1-2@xl uk-width-1-2@l uk-width-1-4@m uk-width-1-2@s">
-        <div class="uk-card-title">Profile Picture</div>
-        <div class="uk-margin-top" uk-form-custom="target: true">
-          <div class="uk-margin">
-            <label class="uk-form-label">Profile picture</label>
-            <div class="uk-form-controls">
-              <div class="uk-width-1-1" uk-form-custom="target: true">
-                <input type="file" @change="getEventPicture">
-                <input class="uk-input uk-width-1-1" type="text" placeholder="JPG/PNG" disabled>
-                <span class="uk-text-small uk-text-muted">Max: 2MB</span>
-              </div>
-              <button @click="saveProfilePicture()" class="uk-button uk-button-primary uk-margin-top" v-html="forms.submitPicture"></button>
-            </div>
+      <div class="uk-margin">
+        <label class="uk-form-label">Fullname</label>
+        <div class="uk-form-controls">
+          <input type="text" class="uk-input" v-model="forms.fullname">
+        </div>
+        <div v-if="errors.fullname" class="uk-text-small uk-text-danger" v-html="errors.fullname"></div>
+      </div>
+      <div class="uk-margin">
+        <label class="uk-form-label">Password</label>
+        <div class="uk-form-controls">
+          <input type="text" class="uk-input" v-model="forms.password">
+        </div>
+        <div v-if="errors.password" class="uk-text-small uk-text-danger" v-html="errors.password"></div>
+      </div>
+      <div class="uk-margin">
+        <label class="uk-form-label">Profile picture</label>
+        <div class="uk-form-controls">
+          <div class="uk-width-1-1" uk-form-custom="target: true">
+            <input type="file" @change="getEventPicture">
+            <input class="uk-input uk-width-1-1" type="text" placeholder="JPG/PNG" disabled>
+            <span class="uk-text-small uk-text-muted">Max: 2MB</span>
           </div>
         </div>
       </div>
-    </div>
+      <div class="uk-margin">
+        <button class="uk-button uk-button-primary" v-html="forms.submit"></button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -101,16 +91,44 @@ export default {
         }
       }
 
-      this.forms.submit = '<span uk-spinner></span>';
-      axios({
-        method: 'put',
-        url: this.url + '/users/saveprofile',
-        params: {
-          username: this.forms.username,
-          password: this.forms.password,
-          fullname: this.forms.fullname
+      var formdata = new FormData();
+      if( this.forms.picture !== '' )
+      {
+        var formatfile = this.getFormatFile( this.forms.picture.name );
+        if( formatfile === 'jpg' || formatfile === 'png' || formatfile === 'jpeg' )
+        {
+          if( this.forms.picture.size > 2048000 )
+          {
+            swal({
+              title: 'Warning',
+              text: 'Image file too large',
+              icon: 'warning',
+              dangerMode: true,
+              timer: 3000
+            });
+            return false;
+          }
         }
-      }).then( res => {
+        else
+        {
+          swal({
+            title: 'Warning',
+            text: 'Image file must be JPG / PNG',
+            icon: 'warning',
+            dangerMode: true,
+            timer: 3000
+          });
+          return false;
+        }
+      }
+
+      formdata.append('fullname', this.forms.fullname);
+      formdata.append('username', this.forms.username);
+      formdata.append('password', this.forms.password);
+      formdata.append('picture', this.forms.picture);
+
+      this.forms.submit = '<span uk-spinner></span>';
+      axios.post( this.url + '/users/saveprofile', formdata ).then( res => {
         swal({
           title: 'Success',
           text: res.data.statusText,
