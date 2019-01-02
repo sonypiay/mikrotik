@@ -75,7 +75,7 @@ class UsersController extends Controller
     }
     else
     {
-      $users->user_id = $uid;
+      $users->user_id = 'U' . $uid;
       $users->fullname = $fullname;
       $users->username = $username;
       $users->password = Hash::make( $password );

@@ -37,12 +37,8 @@
               <a href="{{ route('userprofile_page') }}">{{ $users->fullname }}</a>
             </div>
             <div class="profile_privilege">
-              @if( $users->privilege === 'full' )
-                Super Administrator
-              @elseif( $users->privilege === 'write' )
-              Administrator
-              @else
-                User
+              @if( $users->privilege === 'admin' ) Administrator
+              @else User
               @endif
             </div>
           </div>

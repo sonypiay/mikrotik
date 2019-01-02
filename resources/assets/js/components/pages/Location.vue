@@ -45,7 +45,7 @@
             </td>
             <td>
               <a class="uk-button uk-button-text" :href="url + '/devices/monitor/' + device.device_id" uk-tooltip="Monitor"><span uk-icon="info"></span></a>
-              <a v-if="session.privilege === 'full' || session.privilege === 'write'" class="uk-button uk-button-text" :href="url + '/devices/controller/' + device.device_id" uk-icon="cog" uk-tooltip="Controller"></a>
+              <a v-if="session.privilege === 'admin' || session.privilege === 'user'" class="uk-button uk-button-text" :href="url + '/devices/controller/' + device.device_id" uk-icon="cog" uk-tooltip="Controller"></a>
             </td>
           </tr>
         </tbody>

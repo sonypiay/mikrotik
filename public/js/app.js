@@ -54748,8 +54748,8 @@ var render = function() {
                       [_c("span", { attrs: { "uk-icon": "info" } })]
                     ),
                     _vm._v(" "),
-                    _vm.session.privilege === "full" ||
-                    _vm.session.privilege === "write"
+                    _vm.session.privilege === "admin" ||
+                    _vm.session.privilege === "user"
                       ? _c("a", {
                           staticClass: "uk-button uk-button-text",
                           attrs: {
