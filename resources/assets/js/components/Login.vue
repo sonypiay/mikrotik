@@ -21,13 +21,13 @@
           </div>
           <div v-if="errors.password" class="uk-text-small uk-text-danger" v-html="errors.password"></div>
         </div>
-        <div class="uk-margin">
+        <!--<div class="uk-margin">
           <div class="uk-form-controls">
             <div class="uk-text-center form-rememberme">
               <label> <input type="checkbox" class="uk-checkbox" value="Y"> Remember Me </label>
             </div>
           </div>
-        </div>
+        </div>-->
         <div class="uk-margin">
           <button v-html="forms.submit" class="uk-width-1-1 uk-button uk-button-primary form-btnlogin">Sign in</button>
         </div>

@@ -48614,8 +48614,6 @@ var render = function() {
                     : _vm._e()
                 ]),
                 _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
                 _c("div", { staticClass: "uk-margin" }, [
                   _c(
                     "button",
@@ -48635,26 +48633,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-margin" }, [
-      _c("div", { staticClass: "uk-form-controls" }, [
-        _c("div", { staticClass: "uk-text-center form-rememberme" }, [
-          _c("label", [
-            _c("input", {
-              staticClass: "uk-checkbox",
-              attrs: { type: "checkbox", value: "Y" }
-            }),
-            _vm._v(" Remember Me ")
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
