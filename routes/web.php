@@ -91,4 +91,6 @@ Route::group(['prefix' => 'devices'], function() {
 });
 // devices
 
+// mikrotik
 Route::get('/mikrotik/graphImage', 'Api\MikrotikAPI@showImageGraph');
+// mikrotik
