@@ -53766,9 +53766,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -53922,35 +53919,22 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "uk-card-media-bottom" }, [
                 _c("div", { staticClass: "uk-cover-container" }, [
-                  _vm.services.port === 80
-                    ? _c("img", {
-                        attrs: {
-                          src:
-                            "http://" +
-                            _vm.device.device_ip +
-                            "/graphs/iface/" +
-                            graph.interface +
-                            "/" +
-                            _vm.forms.filterDay +
-                            ".gif",
-                          alt: ""
-                        }
-                      })
-                    : _c("img", {
-                        attrs: {
-                          src:
-                            "http://" +
-                            _vm.device.device_ip +
-                            ":" +
-                            _vm.services.port +
-                            "/graphs/iface/" +
-                            graph.interface +
-                            "/" +
-                            _vm.forms.filterDay +
-                            ".gif",
-                          alt: ""
-                        }
-                      })
+                  _c("iframe", {
+                    attrs: {
+                      width: "500",
+                      height: "200",
+                      src:
+                        _vm.url +
+                        "/mikrotik/graphImage?ip=" +
+                        _vm.device.device_ip +
+                        "&port=" +
+                        _vm.services.port +
+                        "&iface=" +
+                        graph.interface +
+                        "&filtertime=" +
+                        _vm.forms.filterDay
+                    }
+                  })
                 ])
               ])
             ])
@@ -54835,9 +54819,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("#")]),
+        _c("th", [_vm._v("Location")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Region")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),

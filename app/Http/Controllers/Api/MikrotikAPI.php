@@ -101,6 +101,37 @@ class MikrotikAPI extends Controller
     return response()->json( $graph, 200 );
   }
 
+  public function showImageGraph( Request $request )
+  {
+    $ip = $request->ip;
+    $port = $request->port === 80 ? 80 : $request->port;
+    $filtertime = $request->filtertime;
+    $iface = $request->iface;
+    $url = 'http://' . $ip;
+    if( $port === 80 )
+    {
+      $url .= '/graphs/iface/' . $iface . '/' . $filtertime . '.gif';
+    }
+    else
+    {
+      $url .= ':' . $port . '/graphs/iface/' . $iface . '/' . $filtertime . '.gif';
+    }
+
+    $ch = @curl_init();
+    @curl_setopt_array($ch, [
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_URL => $url,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_USERAGENT => $request->server('HTTP_USER_AGENT'),
+		  CURLOPT_HEADER => 0,
+		  CURLOPT_VERBOSE => 0
+	  ]);
+    @curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
+    @curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
+    $res = @curl_exec( $ch ); @curl_close( $ch );
+	  return response( $res )->header('Content-Type', 'image/gif');
+  }
+
   public function addGraph( Request $request, $id )
   {
     $devices = Devices::where('device_id', $id)->first();

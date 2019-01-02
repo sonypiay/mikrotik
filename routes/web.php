@@ -90,3 +90,5 @@ Route::group(['prefix' => 'devices'], function() {
   Route::get('/controller/{id}', 'Pages\DevicesController@controllerdevice');
 });
 // devices
+
+Route::get('/mikrotik/graphImage', 'Api\MikrotikAPI@showImageGraph');

@@ -25,8 +25,8 @@
       <table class="uk-table uk-table-middle uk-table-hover uk-table-striped uk-table-small uk-table-condensed">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Name</th>
+            <th>Location</th>
+            <th>Region</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
