@@ -31,8 +31,8 @@
             <label class="uk-form-label">Privilege</label>
             <div class="uk-form-controls">
               <select class="uk-select" v-model="forms.privilege">
-                <option value="full">Full</option>
-                <option value="write">Write</option>
+                <option value="admin">Administrator</option>
+                <option value="user">User</option>
               </select>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default {
         fullname: '',
         username: '',
         password: '',
-        privilege: 'full',
+        privilege: 'admin',
         user_id: '',
         edit: false
       },
@@ -319,7 +319,7 @@ export default {
         fullname: '',
         username: '',
         password: '',
-        privilege: 'full',
+        privilege: 'admin',
         user_id: '',
         edit: false
       };

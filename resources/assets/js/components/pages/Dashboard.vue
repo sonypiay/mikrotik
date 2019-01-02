@@ -3,11 +3,12 @@
     <header class="uk-navbar uk-box-shadow-small navbarsearch">
       <div class="uk-width-1-1 uk-navbar-item">
         <div class="uk-width-1-1 uk-inline">
-          <a @keyup.enter="getSummaryAps( pagination.path + '?page=' + pagination.current )" class="uk-form-icon" uk-icon="search"></a>
-          <input @keyup.enter="getSummaryAps( pagination.path + '?page=' + pagination.current )" type="search" class="uk-width-1-1 uk-input navbarformsearch" placeholder="Search..." v-model="keywords">
+          <a @keyup.enter="getSummaryAps()" class="uk-form-icon" uk-icon="search"></a>
+          <input @keyup.enter="getSummaryAps()" type="search" class="uk-width-1-1 uk-input navbarformsearch" placeholder="Search..." v-model="keywords">
         </div>
       </div>
     </header>
+    
     <div class="uk-card uk-card-body">
       <h3>Dashboard</h3>
       <div v-if="summaryap.isLoading === true" class="uk-text-center uk-margin-top">
@@ -58,11 +59,7 @@ export default {
   methods: {
     getSummaryAps(pages)
     {
-      var url;
-      if( pages === undefined )
-        url = this.url + '/summary_ap?keywords=' + this.keywords;
-      else
-        url = pages + '?keywords=' + this.keywords;
+      var url = this.url + '/summary_ap?keywords=' + this.keywords;
       axios({
         method: 'get',
         url: url
@@ -83,6 +80,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-</style>
