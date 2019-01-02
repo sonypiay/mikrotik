@@ -176,46 +176,23 @@ class UsersController extends Controller
     }
   }
 
-  public function saveprofile( Request $request, Users $users, Storage $storage )
+  public function saveprofile( Request $request, Users $users )
   {
     $fullname = $request->fullname;
     $username = $request->username;
     $password = $request->password;
-    $picture = $request->picture;
-    $getfilename = $picture === null ? '' : $picture->hashName();
-    $storage = $storage::disk('profile');
-
     $session = $request->session()->get('hasLogin');
     $selecteduser = $users->where('user_id','=', $session['userid'])->first();
-
     if( $username == $selecteduser->username )
     {
       $updated = $selecteduser;
       $updated->fullname = $fullname;
       $updated->username = $username;
       if( ! empty( $password ) ) { $updated->password = Hash::make( $password ); }
-      if( ! empty( $picture ) )
-      {
-        if( $selecteduser->profile_picture === '' || empty( $selecteduser->profile_picture ) )
-        {
-          $storage->putFileAs('avatar', $picture, $getfilename);
-        }
-        else
-        {
-          $checkimage = $storage->exists( 'avatar/' . $selecteduser->profile_picture );
-          if( $checkimage )
-          {
-            $storage->delete('avatar/' . $selecteduser->profile_picture);
-          }
-          $storage->putFileAs('avatar', $picture, $getfilename);
-        }
-        $updated->profile_picture = $getfilename;
-      }
-
       $updated->save();
       $res = [
         'status' => 200,
-        'statusText' => 'Profile has changed.'
+        'statusText' => 'Profile has chamged.'
       ];
     }
     else
@@ -234,28 +211,10 @@ class UsersController extends Controller
         $updated->fullname = $fullname;
         $updated->username = $username;
         if( ! empty( $password ) ) { $updated->password = Hash::make( $password ); }
-        if( ! empty( $picture ) )
-        {
-          if( $updated->profile_picture === '' || empty( $updated->profile_picture ) )
-          {
-            $storage->putFileAs('avatar', $picture, $getfilename);
-          }
-          else
-          {
-            $checkimage = $storage->exists( 'avatar/' . $updated->profile_picture );
-            if( $checkimage )
-            {
-              $storage->delete('avatar/' . $updated->profile_picture);
-            }
-            $storage->putFileAs('avatar', $picture, $getfilename);
-          }
-          $updated->profile_picture = $getfilename;
-        }
-
         $updated->save();
         $res = [
           'status' => 200,
-          'statusText' => 'Profile has changed.'
+          'statusText' => 'Profile has chamged.'
         ];
       }
     }
