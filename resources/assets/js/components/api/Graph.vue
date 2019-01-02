@@ -21,8 +21,10 @@
           </div>
           <div class="uk-card-media-bottom">
             <div class="uk-cover-container">
-              <iframe v-if="services.port === 80" width="500" height="200" :src="'http://' + device.device_ip + '/graphs/iface/' + graph.interface + '/' + forms.filterDay + '.gif'"></iframe>
-              <iframe v-else width="500" height="200" :src="'http://' + device.device_ip + ':' + services.port + '/graphs/iface/' + graph.interface + '/' + forms.filterDay + '.gif'"></iframe>
+              <img v-if="services.port === 80" :src="'http://' + device.device_ip + '/graphs/iface/' + graph.interface + '/' + forms.filterDay + '.gif'" alt="">
+              <img v-else :src="'http://' + device.device_ip + ':' + services.port + '/graphs/iface/' + graph.interface + '/' + forms.filterDay + '.gif'" alt="">
+              <!--<iframe v-if="services.port === 80" width="500" height="200" :src="'http://' + device.device_ip + '/graphs/iface/' + graph.interface + '/' + forms.filterDay + '.gif'"></iframe>
+              <iframe v-else width="500" height="200" :src="'http://' + device.device_ip + ':' + services.port + '/graphs/iface/' + graph.interface + '/' + forms.filterDay + '.gif'"></iframe>-->
             </div>
           </div>
         </div>

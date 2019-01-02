@@ -53767,6 +53767,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['url', 'device'],
@@ -53921,10 +53923,8 @@ var render = function() {
               _c("div", { staticClass: "uk-card-media-bottom" }, [
                 _c("div", { staticClass: "uk-cover-container" }, [
                   _vm.services.port === 80
-                    ? _c("iframe", {
+                    ? _c("img", {
                         attrs: {
-                          width: "500",
-                          height: "200",
                           src:
                             "http://" +
                             _vm.device.device_ip +
@@ -53932,13 +53932,12 @@ var render = function() {
                             graph.interface +
                             "/" +
                             _vm.forms.filterDay +
-                            ".gif"
+                            ".gif",
+                          alt: ""
                         }
                       })
-                    : _c("iframe", {
+                    : _c("img", {
                         attrs: {
-                          width: "500",
-                          height: "200",
                           src:
                             "http://" +
                             _vm.device.device_ip +
@@ -53948,7 +53947,8 @@ var render = function() {
                             graph.interface +
                             "/" +
                             _vm.forms.filterDay +
-                            ".gif"
+                            ".gif",
+                          alt: ""
                         }
                       })
                 ])
