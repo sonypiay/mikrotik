@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
       $session = $request->session()->get('hasLogin');
       $users = $users->where( 'user_id', $session['userid'] )->first();
-      
+
       return response()->view('pages.dashboard', [
         'request' => $request,
         'getSession' => $session,
@@ -33,15 +33,31 @@ class DashboardController extends Controller
 
   public function summary_ap( Request $request, RegionDomain $domain, Devices $devices )
   {
-    $get_totalap = $devices->select(
-      DB::raw('count(*) as total_ap'),
-      'region_domain.region_domain_id as domain_id',
-      'region_domain.region_domain_name as domain_name'
-    )
-    ->join('region_domain', 'devices.region_domain_id', '=', 'region_domain.region_domain_id')
-    ->orderBy('region_domain.region_domain_name')
-    ->groupBy('devices.region_domain_id')
-    ->get();
+    $keywords = $request->keywords;
+    if( empty( $keywords ) )
+    {
+      $get_totalap = $domain->select(
+        DB::raw('count(devices.region_domain_id) as total_ap'),
+        'region_domain.region_domain_id as domain_id',
+        'region_domain.region_domain_name as domain_name'
+      )
+      ->leftJoin('devices', 'region_domain.region_domain_id', '=', 'devices.region_domain_id')
+      ->groupBy('devices.region_domain_id')
+      ->get();
+    }
+    else
+    {
+      $get_totalap = $domain->select(
+        DB::raw('count(devices.region_domain_id) as total_ap'),
+        'region_domain.region_domain_id as domain_id',
+        'region_domain.region_domain_name as domain_name'
+      )
+      ->leftJoin('devices', 'region_domain.region_domain_id', '=', 'devices.region_domain_id')
+      ->where('region_domain.region_domain_name', 'like', '%' . $keywords . '%')
+      ->groupBy('devices.region_domain_id')
+      ->get();
+    }
+
     $data = [];
     $data['statusdevice']['connect'] = [];
     $data['statusdevice']['disconnect'] = [];
